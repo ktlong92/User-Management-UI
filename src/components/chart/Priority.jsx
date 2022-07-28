@@ -34,7 +34,7 @@ const Priority = () => {
 		labels: ["Immediate", "High", "Medium", "Low"],
 		datasets: [
 			{
-				data: chart?.tickets.map((x) => x.priority),
+				data: chart?.tickets?.map((x) => x.priority),
 				backgroundColor: [
 					"rgba(204, 0, 0, 0.2)",
 					"rgba(255, 153, 51, 0.2)",
@@ -63,7 +63,7 @@ const Priority = () => {
 
 	return (
 		<div>
-			<Doughnut data={data} height={400} options={options} />
+			<Doughnut data={data} options={options} />
 		</div>
 	);
 };

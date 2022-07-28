@@ -12,9 +12,7 @@ const Header = () => {
 			</div>
 			<div className='flex space-x-4 mr-3'>
 				<Link href='/auth/Login'>
-					<button className='text-white font-semibold cursor-pointer'>
-						Logout
-					</button>
+					<a className='text-white font-semibold cursor-pointer'>Logout</a>
 				</Link>
 			</div>
 		</div>

@@ -3,6 +3,7 @@ import CardSm from "../../components/card/CardSm";
 import Table from "../../components/table/Table";
 
 const Dashboard = () => {
+
 	return (
 		<div className='h-full w-full'>
 			<div className='px-12 pt-8'>
