@@ -18,8 +18,7 @@ const AddProject = () => {
 		projectName: "",
 		description: "",
 		createdDate: "",
-		email: "",
-		role: "",
+		status: "",
 	});
 
 	const [responseProject, setResponseProject] = useState({
@@ -27,8 +26,7 @@ const AddProject = () => {
 		projectName: "",
 		description: "",
 		createdDate: "",
-		email: "",
-		role: "",
+		status: "",
 	});
 
 	const handleChange = (event) => {
@@ -60,8 +58,7 @@ const AddProject = () => {
 			projectName: "",
 			description: "",
 			createdDate: "",
-			email: "",
-			role: "",
+			status: "",
 		});
 		setIsOpen(false);
 	};

@@ -15,11 +15,11 @@ const UpdateProject = ({ projectId, setResponseProject }) => {
 	}
 
 	const [project, setProject] = useState({
-		id: id,
+		id: "",
 		projectName: "",
 		projectDescription: "",
 		createdDate: new Date(),
-		statusId: "",
+		status: "",
 	});
 
 	const handleChange = (event) => {

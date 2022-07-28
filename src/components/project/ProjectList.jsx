@@ -73,7 +73,7 @@ const ProjectList = ({ project }) => {
 						</thead>
 						{!loading && (
 							<tbody>
-								{project?.map((project) => (
+								{projects?.map((project) => (
 									<Project
 										project={project}
 										key={project.id}
