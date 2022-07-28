@@ -1,9 +1,9 @@
 import { React, useState, useEffect, Fragment } from "react";
 import { Transition, Dialog } from "@headlessui/react";
-import { useParams, useNavigate } from "react-router-dom";
 
+const UpdateProject = ({ projectId, setResponseProject }) => {
+	const PROJECT_API_BASE_URL = "http://localhost:8080/api/v1/projects";
 
-const UpdateProject = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	function closeModal() {
@@ -14,42 +14,60 @@ const UpdateProject = () => {
 		setIsOpen(true);
 	}
 
-	const { id } = useParams();
-	const navigate = useNavigate();
 	const [project, setProject] = useState({
 		id: id,
-		firstName: "",
-		projectDe: "",
+		projectName: "",
+		projectDescription: "",
+		createdDate: new Date(),
 		statusId: "",
 	});
 
-	const handleChange = (e) => {
-		const value = e.target.value;
-		setProject({ ...project, [e.target.name]: value });
+	const handleChange = (event) => {
+		const value = event.target.value;
+		setProject({ ...project, [event.target.name]: value });
 	};
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await ProjectService.getProjectById(project.id);
-				setProject(response.data);
+				const response = await fetch(PROJECT_API_BASE_URL + "/" + projectId, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+					},
+				});
+				const _project = await response.json();
+				setProject(_project);
+				setIsOpen(true);
 			} catch (error) {
 				console.log(error);
 			}
 		};
-		fetchData();
-	}, [project.id]);
+		if (projectId) {
+			fetchData();
+		}
+	}, [projectId]);
 
-	const updateProject = (e) => {
+	const updateProject = async (e) => {
 		e.preventDefault();
-		console.log(project);
-		ProjectService.updateProject(project, id)
-			.then((response) => {
-				navigate("/projectList");
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+		const response = await fetch(PROJECT_API_BASE_URL + "/" + projectId, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(project),
+		});
+		if (!response.ok) {
+			throw new Error("Something went wrong");
+		}
+		const _project = await response.json();
+		setResponseProject(_project);
+		reset(e);
+	};
+
+	const reset = (e) => {
+		e.preventDefault();
+		setIsOpen(false);
 	};
 
 	return (
@@ -126,7 +144,7 @@ const UpdateProject = () => {
 											Update
 										</button>
 										<button
-											onClick={() => navigate("/projectList")}
+											onClick={reset}
 											className='rounded text-white font-semibold bg-red-600 hover:bg-red-800 py-2 px-6'>
 											Close
 										</button>

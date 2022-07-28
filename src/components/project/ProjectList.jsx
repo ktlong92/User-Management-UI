@@ -1,31 +1,43 @@
 import { React, useState, useEffect } from "react";
-import EditProject from "./UpdateProject";
+import UpdateProject from "./UpdateProject";
 import Project from "../project/Project";
 
 
-const ProjectList = () => {
-	const [project, setProject] = useState(null);
+const ProjectList = ({ project }) => {
+	const PROJECT_API_BASE_URL = "http://localhost:8080/api/v1/projects";
+
+	const [projects, setProjects] = useState(null);
 	const [loading, setLoading] = useState(true);
-	
+	const [projectId, setProjectId] = useState(null);
+	const [responseProject, setResponseProject] = useState(null);
+
 	useEffect(() => {
 		const fetchData = async () => {
 			setLoading(true);
 			try {
-				const response = await ProjectService.getProject();
-				setProject(response.data);
+				const response = await fetch(PROJECT_API_BASE_URL, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+					},
+				});
+				const projects = await response.json();
+				setProjects(projects);
 			} catch (error) {
 				console.log(error);
 			}
 			setLoading(false);
 		};
 		fetchData();
-	}, []);
+	}, [project, responseProject]);
 
 	const deleteProject = (e, id) => {
 		e.preventDefault();
-		ProjectService.deleteProject(id).then((res) => {
-			if (project) {
-				setProject((prevElement) => {
+		fetch(PROJECT_API_BASE_URL + "/" + id, {
+			method: "DELETE",
+		}).then((res) => {
+			if (projects) {
+				setProjects((prevElement) => {
 					return prevElement.filter((project) => project.id !== id);
 				});
 			}
@@ -74,6 +86,7 @@ const ProjectList = () => {
 					</table>
 				</div>
 			</div>
+			<UpdateProject projectId={projectId} setResponseProject={setResponseProject} />
 		</>
 	);
 };

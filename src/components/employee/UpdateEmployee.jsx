@@ -1,9 +1,9 @@
 import { React, useState, useEffect, Fragment } from "react";
 import { Transition, Dialog } from "@headlessui/react";
-import { useParams, useNavigate } from "react-router-dom";
 
+const UpdateEmployee = ({ employeeId, setResponseEmployee }) => {
+	const EMPLOYEE_API_BASE_URL = "http://localhost:8080/api/v1/employees";
 
-const UpdateEmployee = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	function closeModal() {
@@ -14,42 +14,61 @@ const UpdateEmployee = () => {
 		setIsOpen(true);
 	}
 
-	const { id } = useParams();
-	const navigate = useNavigate();
 	const [employee, setEmployee] = useState({
 		id: id,
 		firstName: "",
 		lastName: "",
-		emailId: "",
+		phoneNumber: "",
+		email: "",
+		role: "",
 	});
 
-	const handleChange = (e) => {
-		const value = e.target.value;
-		setEmployee({ ...employee, [e.target.name]: value });
+	const handleChange = (event) => {
+		const value = event.target.value;
+		setEmployee({ ...employee, [event.target.name]: value });
 	};
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await EmployeeService.getEmployeeById(employee.id);
-				setEmployee(response.data);
+				const response = await fetch(EMPLOYEE_API_BASE_URL + "/" + employeeId, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+					},
+				});
+				const _employee = await response.json();
+				setEmployee(_employee);
+				setIsOpen(true);
 			} catch (error) {
 				console.log(error);
 			}
 		};
-		fetchData();
-	}, [employee.id]);
+		if (employeeId) {
+			fetchData();
+		}
+	}, [employeeId]);
 
-	const updateEmployee = (e) => {
+	const updateEmployee = async (e) => {
 		e.preventDefault();
-		console.log(employee);
-		EmployeeService.updateEmployee(employee, id)
-			.then((response) => {
-				navigate("/employeeList");
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+		const response = await fetch(EMPLOYEE_API_BASE_URL + "/" + employeeId, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(employee),
+		});
+		if (!response.ok) {
+			throw new Error("Something went wrong");
+		}
+		const _employee = await response.json();
+		setResponseEmployee(_employee);
+		reset(e);
+	};
+
+	const reset = (e) => {
+		e.preventDefault();
+		setIsOpen(false);
 	};
 
 	return (
@@ -137,7 +156,7 @@ const UpdateEmployee = () => {
 											Update
 										</button>
 										<button
-											onClick={() => navigate("/employeeList")}
+											onClick={reset}
 											className='rounded text-white font-semibold bg-red-600 hover:bg-red-800 py-2 px-6'>
 											Close
 										</button>

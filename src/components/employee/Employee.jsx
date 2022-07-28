@@ -1,12 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
-const Employee = ({ employee, deleteEmployee }) => {
-	const navigate = useNavigate();
-	const editEmployee = (e, id) => {
-		e.preventDefault();
-		navigate(`/updateEmployee/${id}`);
-	};
+const Employee = ({ employee, deleteEmployee, editEmployee }) => {
 
 	return (
 		<tr key={employee.id}>

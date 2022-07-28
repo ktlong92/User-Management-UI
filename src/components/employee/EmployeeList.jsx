@@ -1,38 +1,47 @@
 import { React, useState, useEffect } from "react";
-// import EditEmployees from "./UpdateEmployee";
-import Employees from "../employee/Employees";
+import UpdateEmployee from "./UpdateEmployee";
+import Employee from "../employee/Employee";
 
 const EmployeeList = () => {
-	
+	const EMPLOYEE_API_BASE_URL = "http://localhost:8080/api/v1/employees";
+
 	const [employees, setEmployees] = useState(null);
 	const [loading, setLoading] = useState(true);
-	// const [EmployeesId, setEmployeesId] = useState(null);
-	// const [responseEmployee, setResponseEmployee] = useState(null);
+	const [EmployeesId, setEmployeesId] = useState(null);
+	const [responseEmployee, setResponseEmployee] = useState(null);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			setLoading(true);
 			try {
-				const response = await EmployeeService.getEmployees();
-				setEmployees(response.data);
+				const response = await fetch(EMPLOYEE_API_BASE_URL, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+					},
+				});
+				const employees = await response.json();
+				setEmployees(employees);
 			} catch (error) {
 				console.log(error);
 			}
 			setLoading(false);
 		};
 		fetchData();
-	}, []);
+	}, [employee, responseEmployee]);
 
 	const deleteEmployee = (e, id) => {
-    e.preventDefault();
-    EmployeeService.deleteEmployee(id).then((res) => {
-      if (employees) {
-        setEmployees((prevElement) => {
-          return prevElement.filter((employee) => employee.id !== id);
-        });
-      }
-    });
-  };
+		e.preventDefault();
+		fetch(EMPLOYEE_API_BASE_URL + "/" + id, {
+			method: "DELETE",
+		}).then((res) => {
+			if (employees) {
+				setEmployees((prevElement) => {
+					return prevElement.filter((employee) => employee.id !== id);
+				});
+			}
+		});
+	};
 
 	const editEmployee = (e, id) => {
 		e.preventDefault();
@@ -67,7 +76,7 @@ const EmployeeList = () => {
 						{!loading && (
 							<tbody>
 								{employees?.map((employee) => (
-									<Employees
+									<Employee
 										employee={employee}
 										key={employee.id}
 										deleteEmployee={deleteEmployee}
@@ -79,10 +88,10 @@ const EmployeeList = () => {
 					</table>
 				</div>
 			</div>
-			{/* <EditEmployees
+			<UpdateEmployee
 				employeeId={employeeId}
 				setResponseEmployee={setResponseEmployee}
-			/> */}
+			/>
 		</>
 	);
 };

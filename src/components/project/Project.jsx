@@ -1,13 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
-const Project = ({ project, deleteProject }) => {
-	const navigate = useNavigate();
-	const editProject = (e, id) => {
-		e.preventDefault();
-		navigate(`/updateProject/${id}`);
-	};
-
+const Project = ({ project, deleteProject, editProject }) => {
+	
 	return (
 		<tr key={project.id}>
 			<td className='text-justify py-4 px-6 whitespace-nowrap'>

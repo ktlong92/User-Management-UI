@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { Transition, Dialog } from "@headlessui/react";
 
-
 const AddProject = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -22,20 +21,35 @@ const AddProject = () => {
 		role: "",
 	});
 
-	const handleChange = (e) => {
-		const value = e.target.value;
-		setProject({ ...project, [e.target.name]: value });
+	const [responseProject, setResponseProject] = useState({
+		id: "",
+		projectName: "",
+		description: "",
+		createdDate: "",
+		email: "",
+		role: "",
+	});
+
+	const handleChange = (event) => {
+		const value = event.target.value;
+		setProject({ ...project, [event.target.name]: value });
 	};
 
-	const saveProject = (e) => {
+	const saveProject = async (e) => {
 		e.preventDefault();
-		ProjectService.saveProject(project)
-			.then((response) => {
-				console.log(response);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+		const response = await fetch(PROJECT_API_BASE_URL, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(project),
+		});
+		if (!response.ok) {
+			throw new Error("Something went wrong");
+		}
+		const _project = await response.json();
+		setResponseProject(_project);
+		reset(e);
 	};
 
 	const reset = (e) => {

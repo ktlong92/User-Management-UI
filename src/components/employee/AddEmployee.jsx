@@ -1,9 +1,11 @@
 import React, { Fragment, useState } from "react";
 import { Transition, Dialog } from "@headlessui/react";
-
+import EmployeeList from './EmployeeList';
 
 
 const AddEmployee = () => {
+	const EMPLOYEE_API_BASE_URL = "http://localhost:8080/api/v1/employees";
+
 	const [isOpen, setIsOpen] = useState(false);
 
 	function closeModal() {
@@ -18,25 +20,40 @@ const AddEmployee = () => {
 		id: "",
 		firstName: "",
 		lastName: "",
-		phoneNumber: "",
 		email: "",
+		phoneNumber: "",
 		role: "",
 	});
 
-	const handleChange = (e) => {
-		const value = e.target.value;
-		setEmployee({ ...employee, [e.target.name]: value });
+	const [responseEmployee, setResponseEmployee] = useState({
+		id: "",
+		firstName: "",
+		lastName: "",
+		email: "",
+		phoneNumber: "",
+		role: "",
+	});
+
+	const handleChange = (event) => {
+		const value = event.target.value;
+		setEmployee({ ...employee, [event.target.name]: value });
 	};
 
-	const saveEmployee = (e) => {
+	const saveEmployee = async (e) => {
 		e.preventDefault();
-		EmployeeService.saveEmployee(employee)
-			.then((response) => {
-				console.log(response);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+		const response = await fetch(EMPLOYEE_API_BASE_URL, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(employee),
+		});
+		if (!response.ok) {
+			throw new Error("Something went wrong");
+		}
+		const _employee = await response.json();
+		setResponseEmployee(_employee);
+		reset(e);
 	};
 
 	const reset = (e) => {
@@ -45,8 +62,8 @@ const AddEmployee = () => {
 			id: "",
 			firstName: "",
 			lastName: "",
-			phoneNumber: "",
 			email: "",
+			phoneNumber: "",
 			role: "",
 		});
 		setIsOpen(false);
@@ -159,6 +176,7 @@ const AddEmployee = () => {
 					</div>
 				</Dialog>
 			</Transition>
+			<EmployeeList employee={responseEmployee} />
 		</>
 	);
 };
