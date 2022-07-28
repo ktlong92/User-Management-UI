@@ -132,8 +132,8 @@ const UpdateProject = ({ projectId, setResponseProject }) => {
 										</label>
 										<input
 											type='text'
-											name='status'
-											value={project.status}
+											name='projectStatus'
+											value={project.projectStatus}
 											onChange={(e) => handleChange(e)}
 											className='h-10 w-96 border mt-2 px-2 py-2'></input>
 									</div>

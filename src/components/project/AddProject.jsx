@@ -15,18 +15,18 @@ const AddProject = () => {
 
 	const [project, setProject] = useState({
 		id: "",
-		projectName: "",
-		description: "",
+		name: "",
+		projectDescription: "",
 		createdDate: "",
-		status: "",
+		projectStatus: "",
 	});
 
 	const [responseProject, setResponseProject] = useState({
 		id: "",
-		projectName: "",
-		description: "",
+		name: "",
+		projectDescription: "",
 		createdDate: "",
-		status: "",
+		projectStatus: "",
 	});
 
 	const handleChange = (event) => {
@@ -56,9 +56,9 @@ const AddProject = () => {
 		setProject({
 			id: "",
 			projectName: "",
-			description: "",
+			projectDescription: "",
 			createdDate: "",
-			status: "",
+			projectStatus: "",
 		});
 		setIsOpen(false);
 	};
@@ -135,8 +135,8 @@ const AddProject = () => {
 											</label>
 											<input
 												type='text'
-												name='status'
-												value={project.status}
+												name='projectStatus'
+												value={project.projectStatus}
 												onChange={(e) => handleChange(e)}
 												className='h-10 w-96 border mt-2 px-2 py-2'></input>
 										</div>

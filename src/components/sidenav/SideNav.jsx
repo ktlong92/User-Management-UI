@@ -1,7 +1,7 @@
 import { Avatar } from "@mui/material";
 import { React, useState } from "react";
 import { BsFillXDiamondFill, BsSearch } from "react-icons/bs";
-import Link from "next/link";
+import Link from "next/Link";
 
 import {
 	MdAddchart,

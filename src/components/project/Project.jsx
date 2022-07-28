@@ -14,7 +14,7 @@ const Project = ({ project, deleteProject, editProject }) => {
 				<div className='text-sm text-gray-600'>{project.createdDate}</div>
 			</td>
 			<td className='text-justify py-4 px-6 whitespace-nowrap'>
-				<div className='text-sm text-gray-600'>{project.status}</div>
+				<div className='text-sm text-gray-600'>{project.projectStatus}</div>
 			</td>
 			<td className='text-right py-4 px-6 whitespace-nowrap'>
 				<a

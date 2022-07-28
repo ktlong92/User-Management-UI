@@ -2,7 +2,7 @@ import { React, useState, useEffect } from "react";
 import UpdateEmployee from "./UpdateEmployee";
 import Employee from "../employee/Employee";
 
-const EmployeeList = () => {
+const EmployeeList = ({ employee }) => {
 	const EMPLOYEE_API_BASE_URL = "http://localhost:8080/api/v1/employees";
 
 	const [employees, setEmployees] = useState(null);
@@ -28,7 +28,7 @@ const EmployeeList = () => {
 			setLoading(false);
 		};
 		fetchData();
-	}, [employees, responseEmployee]);
+	}, [employee, responseEmployee]);
 
 	const deleteEmployee = (e, id) => {
 		e.preventDefault();
