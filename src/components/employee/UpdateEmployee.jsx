@@ -15,7 +15,7 @@ const UpdateEmployee = ({ employeeId, setResponseEmployee }) => {
 	}
 
 	const [employee, setEmployee] = useState({
-		id: id,
+		id: "",
 		firstName: "",
 		lastName: "",
 		phoneNumber: "",

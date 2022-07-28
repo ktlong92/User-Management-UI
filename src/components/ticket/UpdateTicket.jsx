@@ -15,7 +15,7 @@ const UpdateTicket = ({ ticketId, setResponseTicket }) => {
 	}
 
 	const [ticket, setTicket] = useState({
-		id: id,
+		id: "",
 		title: "",
 		description: "",
 		priority: "",

@@ -7,7 +7,7 @@ const EmployeeList = () => {
 
 	const [employees, setEmployees] = useState(null);
 	const [loading, setLoading] = useState(true);
-	const [EmployeesId, setEmployeesId] = useState(null);
+	const [employeeId, setEmployeeId] = useState(null);
 	const [responseEmployee, setResponseEmployee] = useState(null);
 
 	useEffect(() => {
@@ -28,7 +28,7 @@ const EmployeeList = () => {
 			setLoading(false);
 		};
 		fetchData();
-	}, [employee, responseEmployee]);
+	}, [employees, responseEmployee]);
 
 	const deleteEmployee = (e, id) => {
 		e.preventDefault();

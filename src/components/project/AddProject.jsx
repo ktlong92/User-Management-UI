@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import ProjectList from "./ProjectList";
 import { Transition, Dialog } from "@headlessui/react";
 
 const AddProject = () => {
@@ -161,6 +162,7 @@ const AddProject = () => {
 					</div>
 				</Dialog>
 			</Transition>
+			<ProjectList project={responseProject} />
 		</>
 	);
 };
