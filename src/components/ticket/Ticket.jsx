@@ -11,13 +11,16 @@ const Ticket = ({ ticket, deleteTicket, editTicket }) => {
 				<div className='text-sm text-gray-600'>{ticket.description}</div>
 			</td>
 			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+				<div className='text-sm text-gray-600'>{ticket.employees}</div>
+			</td>
+			<td className='text-justify py-4 px-6 whitespace-nowrap'>
 				<div className='text-sm text-gray-600'>{ticket.priority}</div>
 			</td>
 			<td className='text-justify py-4 px-6 whitespace-nowrap'>
 				<div className='text-sm text-gray-600'>{ticket.status}</div>
 			</td>
 			<td className='text-justify py-4 px-6 whitespace-nowrap'>
-				<div className='text-sm text-gray-600'>{ticket.projectName}</div>
+				<div className='text-sm text-gray-600'>{ticket.type}</div>
 			</td>
 			<td className='text-right py-4 px-6 whitespace-nowrap'>
 				<a

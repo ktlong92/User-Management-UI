@@ -1,10 +1,11 @@
 import React, { Fragment, useState } from "react";
 import { Transition, Dialog } from "@headlessui/react";
 import TicketList from "./TicketList";
-
+import PriorityListBox from "../listBox/PriorityListBox";
+import StatusListBox from "../listBox/StatusListBox";
+import TypeListBox from "../listBox/TypeListBox";
 
 const AddTicket = () => {
-
 	const TICKET_API_BASE_URL = "http://localhost:8080/api/v1/tickets";
 
 	const [isOpen, setIsOpen] = useState(false);
@@ -21,18 +22,20 @@ const AddTicket = () => {
 		id: "",
 		title: "",
 		description: "",
+		employees: "",
 		priority: "",
 		status: "",
-		projectName: "",
+		type: "",
 	});
 
 	const [responseTicket, setResponseTicket] = useState({
 		id: "",
 		title: "",
 		description: "",
+		employees: "",
 		priority: "",
 		status: "",
-		projectName: "",
+		type: "",
 	});
 
 	const handleChange = (event) => {
@@ -63,9 +66,10 @@ const AddTicket = () => {
 			id: "",
 			title: "",
 			description: "",
+			employees: "",
 			priority: "",
 			status: "",
-			projectName: "",
+			type: "",
 		});
 		setIsOpen(false);
 	};
@@ -95,7 +99,7 @@ const AddTicket = () => {
 							leave='ease-in duration-200'
 							leaveFrom='opacity-100 scale-100'
 							leaveTo='opacity-0 scale-95'>
-							<div className='inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded'>
+							<div className='inline-block h-full w-full max-w-lg p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded'>
 								<Dialog.Title
 									as='h3'
 									className='text-lg font-md leading-6 text-gray-900'>
@@ -127,29 +131,7 @@ const AddTicket = () => {
 										</div>
 										<div className='h-14 my-4'>
 											<label className='block text-gray-600 text-sm font-normal'>
-												Priority
-											</label>
-											<input
-												type='text'
-												name='priority'
-												value={ticket.priority}
-												onChange={(e) => handleChange(e)}
-												className='h-10 w-96 border mt-2 px-2 py-2'></input>
-										</div>
-										<div className='h-14 my-4'>
-											<label className='block text-gray-600 text-sm font-normal'>
-												Status
-											</label>
-											<input
-												type='text'
-												name='status'
-												value={ticket.status}
-												onChange={(e) => handleChange(e)}
-												className='h-10 w-96 border mt-2 px-2 py-2'></input>
-										</div>
-										<div className='h-14 my-4'>
-											<label className='block text-gray-600 text-sm font-normal'>
-												Project
+												Assign Employee
 											</label>
 											<input
 												type='text'
@@ -157,6 +139,24 @@ const AddTicket = () => {
 												value={ticket.projectName}
 												onChange={(e) => handleChange(e)}
 												className='h-10 w-96 border mt-2 px-2 py-2'></input>
+										</div>
+										<div className='h-14 my-4'>
+											<label className='block text-gray-600 text-sm font-normal'>
+												Priority
+											</label>
+											<PriorityListBox onChange={(e) => handleChange(e)} />
+										</div>
+										<div className='h-14 my-4'>
+											<label className='block text-gray-600 text-sm font-normal'>
+												Status
+											</label>
+											<StatusListBox onChange={(e) => handleChange(e)} />
+										</div>
+										<div className='h-14 my-4'>
+											<label className='block text-gray-600 text-sm font-normal'>
+												Type
+											</label>
+											<TypeListBox onChange={(e) => handleChange(e)} />
 										</div>
 										<div className='h-14 my-4 space-x-4 pt-4'>
 											<button

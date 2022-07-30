@@ -62,13 +62,16 @@ const TicketList = ({ ticket }) => {
 									Description
 								</th>
 								<th className='text-gray-900 text-justify text-sm font-medium tracking-narrow py-3 px-6 '>
+									Employees
+								</th>
+								<th className='text-gray-900 text-justify text-sm font-medium tracking-narrow py-3 px-6 '>
 									Priority
 								</th>
 								<th className='text-gray-900 text-justify text-sm font-medium tracking-narrow py-3 px-6 '>
 									Status
 								</th>
 								<th className='text-gray-900 text-justify text-sm font-medium tracking-narrow py-3 px-6 '>
-									Project
+									Type
 								</th>
 								<th className='text-gray-900 text-justify text-sm font-medium tracking-narrow py-3 px-6 '></th>
 							</tr>
