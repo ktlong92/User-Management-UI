@@ -1,5 +1,8 @@
 import { React, useState, useEffect, Fragment } from "react";
 import { Transition, Dialog } from "@headlessui/react";
+import PriorityListBox from "../listBox/PriorityListBox";
+import StatusListBox from "../listBox/StatusListBox";
+import TypeListBox from "../listBox/TypeListBox";
 
 const UpdateTicket = ({ ticketId, setResponseTicket }) => {
 	const TICKET_API_BASE_URL = "http://localhost:8080/api/v1/tickets";
@@ -18,9 +21,10 @@ const UpdateTicket = ({ ticketId, setResponseTicket }) => {
 		id: "",
 		title: "",
 		description: "",
+		employees: "",
 		priority: "",
 		status: "",
-		projectName: "",
+		type: "",
 	});
 
 	const handleChange = (event) => {
@@ -118,36 +122,32 @@ const UpdateTicket = ({ ticketId, setResponseTicket }) => {
 									</div>
 									<div className='h-14 my-4'>
 										<label className='block text-gray-600 text-sm font-normal'>
-											Priority
+											Assign Employees
 										</label>
 										<input
 											type='text'
-											name='priority'
-											value={ticket.priority}
+											name='employees'
+											value={ticket.employees}
 											onChange={(e) => handleChange(e)}
 											className='h-10 w-96 border mt-2 px-2 py-2'></input>
+									</div>
+									<div className='h-14 my-4'>
+										<label className='block text-gray-600 text-sm font-normal'>
+											Priority
+										</label>
+										<PriorityListBox onChange={(e) => handleChange(e)} />
 									</div>
 									<div className='h-14 my-4'>
 										<label className='block text-gray-600 text-sm font-normal'>
 											Status
 										</label>
-										<input
-											type='text'
-											name='status'
-											value={ticket.status}
-											onChange={(e) => handleChange(e)}
-											className='h-10 w-96 border mt-2 px-2 py-2'></input>
+										<StatusListBox onChange={(e) => handleChange(e)} />
 									</div>
 									<div className='h-14 my-4'>
 										<label className='block text-gray-600 text-sm font-normal'>
-											Project
+											Type
 										</label>
-										<input
-											type='text'
-											name='projectName'
-											value={ticket.projectName}
-											onChange={(e) => handleChange(e)}
-											className='h-10 w-96 border mt-2 px-2 py-2'></input>
+										<TypeListBox onChange={(e) => handleChange(e)} />
 									</div>
 									<div className='h-14 my-4 space-x-4 pt-4'>
 										<button
