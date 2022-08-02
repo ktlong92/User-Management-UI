@@ -11,11 +11,11 @@ import {
 
 function Login() {
 	return (
-		<div className='flex flex-col items-center justify-center min-h-screen py-2 bg-gray-900'>
+		<div className='flex flex-col items-center justify-center min-h-screen py-2 bg-gray-800'>
 			<div className='flex flex-col items-center justify-center w-full flex-1 px-20 text-center'>
 				{/* User Login Section */}
-				<div className='bg-white rounded-2xl shadow-2xl flex w-2/3 max-w-4xl'>
-					<div className='w-3/5 p-5'>
+				<div className='rounded-2xl shadow-2xl flex w-2/3 max-w-4xl'>
+					<div className='bg-white w-3/5 p-5 rounded-tl-2xl rounded-bl-2xl'>
 						<div className='text-left font-bold'>
 							<span className='text-red-600'>Rizer</span>Management
 						</div>
@@ -84,7 +84,7 @@ function Login() {
 						<div className='border-2 w-40 border-white inline-block mb-2'></div>
 						<p className='mb-10'>Create an account to get started!</p>
 						<a
-							onClick={signUp}
+							href='../auth/SignUp'
 							className='border-2 border-white rounded-full px-12 py-2 inline-block font-semibold cursor-pointer hover:bg-white hover:text-red-600 hover:border-black'>
 							Sign up
 						</a>

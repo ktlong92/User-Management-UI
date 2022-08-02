@@ -6,7 +6,7 @@ import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import TablePagination from "@mui/material/Pagination";
+import Pagination from "@mui/material/Pagination";
 import Paper from "@mui/material/Paper";
 import Project from "../project/Project";
 
@@ -27,7 +27,7 @@ export default function ProjectTable({ project }) {
 
 	const [projects, setProjects] = useState();
 	const [loading, setLoading] = useState(true);
-	const [page, setPage] = useState([1]);
+	const [page, setPage] = useState(0);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -49,12 +49,16 @@ export default function ProjectTable({ project }) {
 		fetchData();
 	}, [project]);
 
-	const handleChangePage = (event, newPage) => {
-		setPage(newPage);
+	const handlePageButtonClick = (event) => {
+		onPageChange(event, page);
 	};
 
-	const projectsAfterPaging = () => {
-		return projects.slice(page * rowsPerPage, page * 1 * rowsPerPage);
+	const handleBackButtonClick = (event) => {
+		onPageChange(event, page - 1);
+	};
+
+	const handleNextButtonClick = (event) => {
+		onPageChange(event, page + 1);
 	};
 
 	return (
@@ -68,8 +72,9 @@ export default function ProjectTable({ project }) {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{projects &&
-						projectsAfterPaging.map((project) => (
+					{projects
+						?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+						.map((project) => (
 							<Project
 								project={project}
 								key={project.id}
@@ -86,12 +91,12 @@ export default function ProjectTable({ project }) {
 							</Project>
 						))}
 				</TableBody>
-				<TablePagination
-					component='div'
+				<Pagination
+					// count={projects.length / rowsPerPage}
 					variant='outlined'
-					color='error.dark'
-					page={page}
-					onPageChange={handleChangePage}
+					color='error'
+					onPageChange={[handlePageButtonClick, handleBackButtonClick, handleNextButtonClick]}
+					defaultPage={0}
 				/>
 			</Table>
 		</TableContainer>

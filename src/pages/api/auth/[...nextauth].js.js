@@ -1,17 +1,18 @@
 import NextAuth from "next-auth";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "lib/mongodb";
-// import CredentialsProvider from "next-auth/providers/credentials";
+import CredentialsProvider from "next-auth/providers/credentials";
 import AtlassianProvider from "next-auth/providers/atlassian";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
+import { autocompleteClasses } from "@mui/material";
 
 export default NextAuth({
 	// Database connection adapters
 	adapter: MongoDBAdapter(clientPromise),
 	//  Custom NextAuth pages...
 	pages: {
-		signIn: "/Login",
+		signIn: "/auth/Login",
 	},
 	// All providers that you want to use
 	providers: [
@@ -30,6 +31,26 @@ export default NextAuth({
 			clientId: process.env.GOOGLE_CLIENT_ID,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET,
 		}),
+		// Credentials provider authentication with username and password
+		CredentialsProvider({
+			credentials: {
+				username: { label: "Username", type: "text", placeholder: "Username" },
+				password: {
+					label: "Password",
+					type: "password",
+					placeholder: "Password",
+				},
+			},
+			async authorize(credentials, req) {
+				const user = { id: 1, userName: "JSmith", email: "jsmith@example.com" };
+
+				if (user) {
+					return user;
+				} else {
+					return null;
+				}
+			},
+		}),
 	],
 	// Callbacks
 	callbacks: {
@@ -38,28 +59,21 @@ export default NextAuth({
 			if (isAllowedToSignIn) {
 				return true;
 			} else {
-				// Return false to display a default error message
 				return false;
-				// Or you can return a URL to redirect to:
-				// return '/unauthorized'
 			}
 		},
 		async redirect({ url, baseUrl }) {
-			// Allows relative callback URLs
 			if (url.startsWith("/")) return `${baseUrl}${url}`;
-			// Allows callback URLs on the same origin
 			else if (new URL(url).origin === baseUrl) return url;
 			return baseUrl;
 		},
 		async jwt({ token, account }) {
-			// Persist the OAuth access_token to the token right after signin
 			if (account) {
 				token.accessToken = account.access_token;
 			}
 			return token;
 		},
 		async session({ session, token, user }) {
-			// Send properties to the client, like an access_token from a provider.
 			session.accessToken = token.accessToken;
 			return session;
 		},
