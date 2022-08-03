@@ -66,23 +66,20 @@ export default function ProjectTable({ project }) {
 			<Table sx={{ minWidth: 650 }} aria-label='simple table'>
 				<TableHead>
 					<TableRow>
-						<StyledTableCell align='left'>Project Name</StyledTableCell>
-						<StyledTableCell align='left'>Description</StyledTableCell>
-						<StyledTableCell align='center'>Employees</StyledTableCell>
+						<StyledTableCell align='justify'>Name</StyledTableCell>
+						<StyledTableCell align='justify'>Description</StyledTableCell>
+						<StyledTableCell align='justify'>Employees</StyledTableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
 					{projects
 						?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 						.map((project) => (
-							<Project
-								project={project}
-								key={project.id}
-								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+							<Project project={project} key={project.id}>
 								<StyledTableCell component='th' scope='row'>
 									{project.name}
 								</StyledTableCell>
-								<StyledTableCell align='right'>
+								<StyledTableCell align='justify'>
 									{project.description}
 								</StyledTableCell>
 								<StyledTableCell align='left'>
@@ -95,7 +92,11 @@ export default function ProjectTable({ project }) {
 					// count={projects.length / rowsPerPage}
 					variant='outlined'
 					color='error'
-					onPageChange={[handlePageButtonClick, handleBackButtonClick, handleNextButtonClick]}
+					onPageChange={[
+						handlePageButtonClick,
+						handleBackButtonClick,
+						handleNextButtonClick,
+					]}
 					defaultPage={0}
 				/>
 			</Table>

@@ -8,7 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Pagination from "@mui/material/Pagination";
 import Paper from "@mui/material/Paper";
-import Project from "../project/Project";
+import Employee from "../employee/Employee";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	[`&.${tableCellClasses.head}`]: {
@@ -20,12 +20,12 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	},
 }));
 
-export default function ProjectTable({ project }) {
-	const PROJECT_API_BASE_URL = "http://localhost:8080/api/v1/projects";
+export default function TeamTable({ employee }) {
+	const EMPLOYEE_API_BASE_URL = "http://localhost:8080/api/v1/employees";
 
 	const rowsPerPage = 3;
 
-	const [projects, setProjects] = useState();
+	const [employees, setEmployees] = useState();
 	const [loading, setLoading] = useState(true);
 	const [page, setPage] = useState(0);
 
@@ -33,21 +33,21 @@ export default function ProjectTable({ project }) {
 		const fetchData = async () => {
 			setLoading(true);
 			try {
-				const response = await fetch(PROJECT_API_BASE_URL, {
+				const response = await fetch(EMPLOYEE_API_BASE_URL, {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
 					},
 				});
-				const projects = await response.json();
-				setProjects(projects);
+				const employees = await response.json();
+				setEmployees(employees);
 			} catch (error) {
 				console.log(error);
 			}
 			setLoading(false);
 		};
 		fetchData();
-	}, [project]);
+	}, [employee]);
 
 	const handlePageButtonClick = (event) => {
 		onPageChange(event, page);
@@ -72,25 +72,36 @@ export default function ProjectTable({ project }) {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{projects
+					{employees
 						?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-						.map((project) => (
-							<Project
-								project={project}
-								key={project.id}
+						.map((employee) => (
+							<Employee
+								employee={employee}
+								key={employee.id}
 								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
 								<StyledTableCell component='th' scope='row'>
-									{project.name}
+									{employee.name}
 								</StyledTableCell>
 								<StyledTableCell align='right'>
-									{project.description}
+									{employee.email}
 								</StyledTableCell>
 								<StyledTableCell align='left'>
-									{project.employees}
+									{employee.phoneNumber}
 								</StyledTableCell>
-							</Project>
+							</Employee>
 						))}
 				</TableBody>
+				<Pagination
+					// count={employees.length / rowsPerPage}
+					variant='outlined'
+					color='error'
+					onPageChange={[
+						handlePageButtonClick,
+						handleBackButtonClick,
+						handleNextButtonClick,
+					]}
+					defaultPage={0}
+				/>
 			</Table>
 		</TableContainer>
 	);

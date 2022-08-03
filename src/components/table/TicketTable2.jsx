@@ -8,7 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Pagination from "@mui/material/Pagination";
 import Paper from "@mui/material/Paper";
-import Project from "../project/Project";
+import Ticket from "../ticket/Ticket";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	[`&.${tableCellClasses.head}`]: {
@@ -20,12 +20,12 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	},
 }));
 
-export default function ProjectTable({ project }) {
-	const PROJECT_API_BASE_URL = "http://localhost:8080/api/v1/projects";
+export default function TicketTable1({ ticket }) {
+	const TICKET_API_BASE_URL = "http://localhost:8080/api/v1/tickets";
 
 	const rowsPerPage = 3;
 
-	const [projects, setProjects] = useState();
+	const [tickets, setTickets] = useState();
 	const [loading, setLoading] = useState(true);
 	const [page, setPage] = useState(0);
 
@@ -33,21 +33,21 @@ export default function ProjectTable({ project }) {
 		const fetchData = async () => {
 			setLoading(true);
 			try {
-				const response = await fetch(PROJECT_API_BASE_URL, {
+				const response = await fetch(TICKET_API_BASE_URL, {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
 					},
 				});
-				const projects = await response.json();
-				setProjects(projects);
+				const tickets = await response.json();
+				setTickets(tickets);
 			} catch (error) {
 				console.log(error);
 			}
 			setLoading(false);
 		};
 		fetchData();
-	}, [project]);
+	}, [ticket]);
 
 	const handlePageButtonClick = (event) => {
 		onPageChange(event, page);
@@ -68,31 +68,31 @@ export default function ProjectTable({ project }) {
 					<TableRow>
 						<StyledTableCell align='left'>Title</StyledTableCell>
 						<StyledTableCell align='left'>Description</StyledTableCell>
-						<StyledTableCell align='center'>Employees</StyledTableCell>
+						<StyledTableCell align='left'>Assigned Employees</StyledTableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{projects
+					{tickets
 						?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-						.map((project) => (
-							<Project
-								project={project}
-								key={project.id}
+						.map((ticket) => (
+							<Ticket
+								ticket={ticket}
+								key={ticket.id}
 								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
 								<StyledTableCell component='th' scope='row'>
-									{project.name}
+									{ticket.title}
 								</StyledTableCell>
 								<StyledTableCell align='right'>
-									{project.description}
+									{ticket.description}
 								</StyledTableCell>
 								<StyledTableCell align='left'>
-									{project.employees}
+									{ticket.employees}
 								</StyledTableCell>
-							</Project>
+							</Ticket>
 						))}
 				</TableBody>
 				<Pagination
-					// count={projects.length / rowsPerPage}
+					// count={tickets.length / rowsPerPage}
 					variant='outlined'
 					color='error'
 					onPageChange={[

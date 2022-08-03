@@ -1,6 +1,6 @@
 import React from "react";
 
-const Ticket = ({ ticket, deleteTicket, editTicket }) => {
+const Ticket = ({ ticket }) => {
 
 	return (
 		<tr key={ticket.id}>
@@ -14,6 +14,9 @@ const Ticket = ({ ticket, deleteTicket, editTicket }) => {
 				<div className='text-sm text-gray-600'>{ticket.employees}</div>
 			</td>
 			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+				<div className='text-sm text-gray-600'>{ticket.estimatedTime}</div>
+			</td>
+			<td className='text-justify py-4 px-6 whitespace-nowrap'>
 				<div className='text-sm text-gray-600'>{ticket.priority}</div>
 			</td>
 			<td className='text-justify py-4 px-6 whitespace-nowrap'>
@@ -21,18 +24,6 @@ const Ticket = ({ ticket, deleteTicket, editTicket }) => {
 			</td>
 			<td className='text-justify py-4 px-6 whitespace-nowrap'>
 				<div className='text-sm text-gray-600'>{ticket.type}</div>
-			</td>
-			<td className='text-right py-4 px-6 whitespace-nowrap'>
-				<a
-					onClick={(e, id) => editTicket(e, ticket.id)}
-					className='text-indigo-600 text-xs hover:text-indigo-800 hover:cursor-pointer px-2'>
-					Edit
-				</a>
-				<a
-					onClick={(e, id) => deleteTicket(e, ticket.id)}
-					className='text-indigo-600 text-xs hover:text-indigo-800 hover:cursor-pointer'>
-					Delete
-				</a>
 			</td>
 		</tr>
 	);

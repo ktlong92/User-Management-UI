@@ -1,6 +1,6 @@
 import React from "react";
 
-const Employee = ({ employee, deleteEmployee, editEmployee }) => {
+const Employee = ({ employee }) => {
 
 	return (
 		<tr key={employee.id}>
@@ -18,18 +18,6 @@ const Employee = ({ employee, deleteEmployee, editEmployee }) => {
 			</td>
 			<td className='text-justify py-4 px-6 whitespace-nowrap'>
 				<div className='text-sm text-gray-600'>{employee.role}</div>
-			</td>
-			<td className='text-right py-4 px-6 whitespace-nowrap'>
-				<a
-					onClick={(e, id) => editEmployee(e, employee.id)}
-					className='text-indigo-600 text-xs hover:text-indigo-800 hover:cursor-pointer px-2'>
-					Edit
-				</a>
-				<a
-					onClick={(e, id) => deleteEmployee(e, employee.id)}
-					className='text-indigo-600 text-xs hover:text-indigo-800 hover:cursor-pointer'>
-					Delete
-				</a>
 			</td>
 		</tr>
 	);
