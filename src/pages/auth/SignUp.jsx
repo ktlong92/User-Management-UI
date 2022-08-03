@@ -71,3 +71,7 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
+SignUp.getLayout = function PageLayout(page) {
+	return <>{page}</>;
+};
