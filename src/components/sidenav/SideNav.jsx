@@ -33,8 +33,7 @@ const SideNav = () => {
 						User
 					</h1>
 				</div>
-
-				<div
+				{/* <div
 					className={`flex items-center rounded-md bg-light-white mt-12 ${
 						!open ? "px-2.5" : "px-4"
 					} py-2`}>
@@ -50,8 +49,7 @@ const SideNav = () => {
 							!open && "hidden"
 						}`}
 					/>
-				</div>
-
+				</div> */}
 				<ul className='pt-2 mt-6'>
 					<Link href='/dashboard'>
 						<li className='text-white text-lg flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md'>

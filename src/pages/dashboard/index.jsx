@@ -62,7 +62,7 @@ const Dashboard = () => {
 			<div className='px-12 pt-8'>
 				<h1 className='font-bold text-2xl'>Dashboard</h1>
 			</div>
-			<div className='flex ml-12 mt-6'>
+			<div className='flex ml-12 mr-4 mt-6'>
 				<div className=' bg-white ml-2 shadow-sm w-full h-80 border rounded-xl border-gray-100'>
 					<div className='flex border-b p-3 border-gray-100 justify-between'>
 						<h1 className='font-semibold'>PROJECTS</h1>
