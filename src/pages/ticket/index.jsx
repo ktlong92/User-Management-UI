@@ -1,4 +1,4 @@
-
+import TicketTable1 from "../../components/table/TicketTable1"
 
 export default function Ticket() {
 	return (
@@ -9,6 +9,9 @@ export default function Ticket() {
 			<div className=' bg-white mx-4 my-4 shadow-sm w-9/10 h-5/6 border rounded-xl border-gray-100'>
 				<div className='flex border-b p-3 border-gray-100 justify-between'>
 					<h1 className='font-semibold'>Tickets</h1>
+				</div>
+				<div>
+					<TicketTable1 />
 				</div>
 			</div>
 		</div>

@@ -67,8 +67,10 @@ export default function ProjectTable({ project }) {
 				<TableHead>
 					<TableRow>
 						<StyledTableCell align='left'>Project Name</StyledTableCell>
-						<StyledTableCell align='left'>Description</StyledTableCell>
-						<StyledTableCell align='center'>Employees</StyledTableCell>
+						<StyledTableCell align='left'>Title</StyledTableCell>
+						<StyledTableCell align='left'>Status</StyledTableCell>
+						<StyledTableCell align='left'>Priority</StyledTableCell>
+						<StyledTableCell align='left'>Created Date</StyledTableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>

@@ -66,9 +66,9 @@ export default function ProjectTable({ project }) {
 			<Table sx={{ minWidth: 650 }} aria-label='simple table'>
 				<TableHead>
 					<TableRow>
-						<StyledTableCell align='left'>Project Name</StyledTableCell>
-						<StyledTableCell align='left'>Description</StyledTableCell>
-						<StyledTableCell align='center'>Employees</StyledTableCell>
+						<StyledTableCell align='left'>Name</StyledTableCell>
+						<StyledTableCell align='left'>Email</StyledTableCell>
+						<StyledTableCell align='center'>Phone Number</StyledTableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
@@ -91,17 +91,6 @@ export default function ProjectTable({ project }) {
 							</Project>
 						))}
 				</TableBody>
-				<Pagination
-					// count={projects.length / rowsPerPage}
-					variant='outlined'
-					color='error'
-					onPageChange={[
-						handlePageButtonClick,
-						handleBackButtonClick,
-						handleNextButtonClick,
-					]}
-					defaultPage={0}
-				/>
 			</Table>
 		</TableContainer>
 	);

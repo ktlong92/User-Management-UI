@@ -3,6 +3,9 @@ import { Transition, Dialog } from "@headlessui/react";
 import PriorityListBox from "../../components/listBox/PriorityListBox";
 import TypeListBox from "../../components/listBox/TypeListBox";
 import StatusListBox from "../../components/listBox/StatusListBox";
+import TeamTable from "../../components/table/TeamTable";
+import TicketTable2 from "../../components/table/TicketTable2";
+
 
 const ProjectDetailPage = () => {
 	const [employeeModalIsOpen, setEmployeeModalIsOpen] = useState(false);
@@ -100,6 +103,9 @@ const ProjectDetailPage = () => {
 								</div>
 							</Dialog>
 						</Transition>
+					</div>
+					<div>
+						<TeamTable />
 					</div>
 				</div>
 				<div className=' bg-white mx-4 shadow-sm w-2/3 h-80 border rounded-xl border-gray-100'>
@@ -209,6 +215,9 @@ const ProjectDetailPage = () => {
 								</div>
 							</Dialog>
 						</Transition>
+					</div>
+					<div>
+						<TicketTable2 />
 					</div>
 				</div>
 			</div>

@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { Transition, Dialog } from "@headlessui/react";
+import AdminTable from '../../components/table/AdminTable'
 
 export default function Employee() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -115,6 +116,9 @@ export default function Employee() {
 							</div>
 						</Dialog>
 					</Transition>
+				</div>
+				<div>
+					<AdminTable />
 				</div>
 			</div>
 		</div>

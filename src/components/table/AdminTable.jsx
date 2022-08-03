@@ -66,9 +66,10 @@ export default function ProjectTable({ project }) {
 			<Table sx={{ minWidth: 650 }} aria-label='simple table'>
 				<TableHead>
 					<TableRow>
-						<StyledTableCell align='left'>Project Name</StyledTableCell>
-						<StyledTableCell align='left'>Description</StyledTableCell>
-						<StyledTableCell align='center'>Employees</StyledTableCell>
+						<StyledTableCell align='left'>Name</StyledTableCell>
+						<StyledTableCell align='left'>Phone Number</StyledTableCell>
+						<StyledTableCell align='left'>Email</StyledTableCell>
+						<StyledTableCell align='left'>Role</StyledTableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
