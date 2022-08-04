@@ -80,7 +80,7 @@ export default function TicketTable1({ ticket }) {
 								ticket={ticket}
 								key={ticket.id}
 								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-								<StyledTableCell component='th' scope='row'>
+								{/* <StyledTableCell component='th' scope='row'>
 									{ticket.projectName}
 								</StyledTableCell>
 								<StyledTableCell align='right'>
@@ -91,7 +91,7 @@ export default function TicketTable1({ ticket }) {
 								</StyledTableCell>
 								<StyledTableCell align='left'>
 									{ticket.priority}
-								</StyledTableCell>
+								</StyledTableCell> */}
 							</Ticket>
 						))}
 				</TableBody>

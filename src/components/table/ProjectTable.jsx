@@ -27,7 +27,7 @@ export default function ProjectTable({ project }) {
 
 	const [projects, setProjects] = useState();
 	const [loading, setLoading] = useState(true);
-	const [page, setPage] = useState(0);
+	const [page, setPage] = useState(1);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -88,17 +88,19 @@ export default function ProjectTable({ project }) {
 							</Project>
 						))}
 				</TableBody>
-				<Pagination
-					// count={projects.length / rowsPerPage}
-					variant='outlined'
-					color='error'
-					onPageChange={[
-						handlePageButtonClick,
-						handleBackButtonClick,
-						handleNextButtonClick,
-					]}
-					defaultPage={0}
-				/>
+				{projects && (
+					<Pagination
+						count={projects.length / rowsPerPage}
+						variant='outlined'
+						color='error'
+						onPageChange={[
+							handlePageButtonClick,
+							handleBackButtonClick,
+							handleNextButtonClick,
+						]}
+						defaultPage={0}
+					/>
+				)}
 			</Table>
 		</TableContainer>
 	);

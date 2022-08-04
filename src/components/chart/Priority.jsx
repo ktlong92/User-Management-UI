@@ -18,9 +18,8 @@ const Priority = () => {
 				},
 			})
 				.then((response) => {
-					response.json().then((json) => {
-						console.log(json);
-						setChart(json);
+					response.json().then((tickets) => {
+						setChart(tickets);
 					});
 				})
 				.catch((error) => {

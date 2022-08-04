@@ -49,16 +49,16 @@ export default function TicketTable1({ ticket }) {
 		fetchData();
 	}, [ticket]);
 
-	const handlePageButtonClick = (event) => {
-		onPageChange(event, page);
-	};
+	// const handlePageButtonClick = (event) => {
+	// 	onChange(event, page);
+	// };
 
-	const handleBackButtonClick = (event) => {
-		onPageChange(event, page - 1);
-	};
+	// const handleBackButtonClick = () => {
+	// 	setPage(page - 1);
+	// };
 
-	const handleNextButtonClick = (event) => {
-		onPageChange(event, page + 1);
+	const handleNextButtonClick = () => {
+		setPage(page + 1);
 	};
 
 	return (
@@ -95,11 +95,9 @@ export default function TicketTable1({ ticket }) {
 					// count={tickets.length / rowsPerPage}
 					variant='outlined'
 					color='error'
-					onPageChange={[
-						handlePageButtonClick,
-						handleBackButtonClick,
-						handleNextButtonClick,
-					]}
+					onChange={
+						handleNextButtonClick
+					}
 					defaultPage={0}
 				/>
 			</Table>
