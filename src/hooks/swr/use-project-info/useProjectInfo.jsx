@@ -1,14 +1,14 @@
 import useSWR from "swr";
 import axios from "axios";
 
-export const formatUrl = () => axios(`tickets/${id}`);
+export const formatUrl = () => axios('projects');
 
-export default function useTicketInfo() {
+export default function useProjectInfo() {
 	const url = formatUrl();
 	const { data, error } = useSWR(url);
 
 	return {
-		ticket: data || {},
+		project: data || {},
 		isLoading: !error && !data,
 		isError: error,
 	};

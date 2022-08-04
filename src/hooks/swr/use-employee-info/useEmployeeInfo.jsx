@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import axios from "axios";
 
-export const formatUrl = () => axios(`employees/${id}`);
+export const formatUrl = () => axios('employees');
 
 export default function useEmployeeInfo() {
 	const url = formatUrl(); 

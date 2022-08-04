@@ -1,4 +1,3 @@
-import { React, useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -6,9 +5,9 @@ import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Pagination from "@mui/material/Pagination";
 import Paper from "@mui/material/Paper";
 import Employee from "../employee/Employee";
+import useEmployeeInfo from "../../hooks/swr/use-employee-info/useEmployeeInfo"
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	[`&.${tableCellClasses.head}`]: {
@@ -20,46 +19,12 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	},
 }));
 
-export default function TeamTable({ employee }) {
-	const EMPLOYEE_API_BASE_URL = "http://localhost:8080/api/v1/employees";
-
+export default function TeamTable() {
+	
+	const { employees } = useEmployeeInfo();
 	const rowsPerPage = 3;
-
-	const [employees, setEmployees] = useState();
-	const [loading, setLoading] = useState(true);
-	const [page, setPage] = useState(0);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			setLoading(true);
-			try {
-				const response = await fetch(EMPLOYEE_API_BASE_URL, {
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json",
-					},
-				});
-				const employees = await response.json();
-				setEmployees(employees);
-			} catch (error) {
-				console.log(error);
-			}
-			setLoading(false);
-		};
-		fetchData();
-	}, [employee]);
-
-	const handlePageButtonClick = (event) => {
-		onPageChange(event, page);
-	};
-
-	const handleBackButtonClick = (event) => {
-		onPageChange(event, page - 1);
-	};
-
-	const handleNextButtonClick = (event) => {
-		onPageChange(event, page + 1);
-	};
+	const page = 1;
+	
 
 	return (
 		<TableContainer container={Paper}>
@@ -74,34 +39,15 @@ export default function TeamTable({ employee }) {
 				<TableBody>
 					{employees
 						?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-						.map((employee) => (
+						.map((data) => (
 							<Employee
-								employee={employee}
-								key={employee.id}
-								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-								<StyledTableCell component='th' scope='row'>
-									{employee.name}
-								</StyledTableCell>
-								<StyledTableCell align='right'>
-									{employee.email}
-								</StyledTableCell>
-								<StyledTableCell align='left'>
-									{employee.phoneNumber}
-								</StyledTableCell>
-							</Employee>
+								key={data.id}
+								showName
+								showEmail
+								showPhoneNumber
+							/>
 						))}
 				</TableBody>
-				<Pagination
-					// count={employees.length / rowsPerPage}
-					variant='outlined'
-					color='error'
-					onPageChange={[
-						handlePageButtonClick,
-						handleBackButtonClick,
-						handleNextButtonClick,
-					]}
-					defaultPage={0}
-				/>
 			</Table>
 		</TableContainer>
 	);

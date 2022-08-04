@@ -4,7 +4,6 @@ import { BsFillXDiamondFill, BsSearch } from "react-icons/bs";
 import Link from "next/Link";
 
 import {
-	MdAddchart,
 	MdAssignmentInd,
 	MdDashboard,
 	MdAssessment,
@@ -51,7 +50,7 @@ const SideNav = () => {
 					/>
 				</div> */}
 				<ul className='pt-2 mt-6'>
-					<Link href='/dashboard'>
+					<Link href='/'>
 						<li className='text-white text-lg flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md'>
 							<MdDashboard />
 							<div
@@ -62,7 +61,7 @@ const SideNav = () => {
 							</div>
 						</li>
 					</Link>
-					<Link href='/employee'>
+					<Link href='/admin'>
 						<li className='text-white text-lg flex items-center gap-x-4 cursor-pointer p-2 mt-4 hover:bg-light-white rounded-md'>
 							<MdAssignmentInd />
 							<div
