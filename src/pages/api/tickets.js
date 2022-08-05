@@ -1,0 +1,56 @@
+export default function handler(req, res) {
+	res.status(200).json({
+		tickets: [
+			{
+				id: "1",
+				title: "Test",
+				description: "Test description",
+				employees: "Naruto Uzumaki",
+				type: "FEATURE",
+				status: "OPEN",
+				priority: "IMMEDIATE",
+				project: "Project 1",
+			},
+			{
+				id: "2",
+				title: "Test1",
+				description: "Test description",
+				employees: "Naruto Uzumaki, Sasuke Uchiha",
+				type: "ERROR",
+				status: "IN-PROGRESS",
+				priority: "HIGH",
+				project: "Project 2",
+			},
+			{
+				id: "3",
+				title: "Test2",
+				description: "Test description",
+				employees: "Sakura Haruno",
+				type: "FEATURE",
+				status: "OPEN",
+				priority: "MEDIUM",
+				project: "Project 3",
+			},
+			{
+				id: "4",
+				title: "Test3",
+				description: "Test description",
+				employees: "Naruto Uzumaki, Sasuke Uchiha, Sakura Haruno",
+				type: "BUG",
+				status: "RESOLVED",
+				priority: "LOW",
+				project: "Project 4",
+			},
+			{
+				id: "5",
+				title: "Test4",
+				description: "Test description",
+				employees: "Kakashi Hatake, Naruto Uzumaki, Sasuke Uchiha, Sakura Haruno",
+				type: "ERROR",
+				status: "RESOLVED",
+				priority: "LOW",
+				project: "Project 5",
+			},
+		],
+	});
+};

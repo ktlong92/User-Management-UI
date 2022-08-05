@@ -5,11 +5,34 @@ import TypeListBox from "../../components/listBox/TypeListBox";
 import StatusListBox from "../../components/listBox/StatusListBox";
 import TeamTable from "../../components/table/TeamTable";
 import TicketTable2 from "../../components/table/TicketTable2";
+// import useSWR from "swr";
 
+// async function fetcher1(url1) {
+// 	const res = await fetch(url1);
+// 	return res.json();
+// }
+
+// async function fetcher2(url2) {
+// 	const res = await fetch(url2);
+// 	return res.json();
+// }
 
 const ProjectDetailPage = () => {
 	const [employeeModalIsOpen, setEmployeeModalIsOpen] = useState(false);
 	const [ticketModalIsOpen, setTicketModalIsOpen] = useState(false);
+
+	// const url1 = "http://localhost:3000/api/employees";
+	// const { data1, error1 } = useSWR(url1, fetcher1);
+
+	// const url2 = "http://localhost:3000/api/tickets";
+	// const { data2, error2 } = useSWR(url2, fetcher2);
+
+	// if (error1 || error2) return <div>failed to load</div>;
+	// if (!data1 || !data2) return <div>loading...</div>;
+	// const { employees } = data1;
+	// const { tickets } = data2;
+	// console.log(employees);
+	// console.log(tickets);
 
 	function openEmployeeModal() {
 		setEmployeeModalIsOpen(true);
@@ -45,7 +68,7 @@ const ProjectDetailPage = () => {
 			<div className='flex ml-12 mt-6'>
 				<div className=' bg-white ml-2 shadow-sm w-1/3 h-80 border rounded-xl border-gray-100'>
 					<div className='flex border-b p-3 border-gray-100 justify-between'>
-						<h1 className='font-semibold'>Employees</h1>
+						<h1 className='font-semibold'>Team</h1>
 						<button
 							onClick={openEmployeeModal}
 							className='rounded bg-red-700 text-white text-xs px-4 py-2 font-semibold'>
@@ -237,6 +260,8 @@ const ProjectDetailPage = () => {
 							<label className='text-gray-600 text-lg font-semibold'>
 								Author
 							</label>
+						</div>
+						<div className='flex justify-between h-14 my-4'>
 							<label className='text-gray-600 text-lg font-semibold'>
 								Status
 							</label>
@@ -249,6 +274,8 @@ const ProjectDetailPage = () => {
 							<label className='text-gray-600 text-lg font-semibold'>
 								Time Estimate
 							</label>
+						</div>
+						<div className='flex justify-between h-14 my-4'>
 							<label className='text-gray-600 text-lg font-semibold'>
 								Assign Employees
 							</label>

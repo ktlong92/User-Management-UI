@@ -1,30 +1,52 @@
 import React from "react";
 
-const Ticket = ({ ticket }) => {
-
+const Ticket = ({
+	data,
+	showTitle,
+	showDescription,
+	showEmployees,
+	showPriority,
+	showStatus,
+	showType,
+	showProject,
+}) => {
 	return (
-		<tr key={ticket.id}>
-			<td className='text-justify py-4 px-6 whitespace-nowrap'>
-				<div className='text-sm text-gray-600'>{ticket.title}</div>
-			</td>
-			<td className='text-justify py-4 px-6 whitespace-nowrap'>
-				<div className='text-sm text-gray-600'>{ticket.description}</div>
-			</td>
-			<td className='text-justify py-4 px-6 whitespace-nowrap'>
-				<div className='text-sm text-gray-600'>{ticket.employees}</div>
-			</td>
-			<td className='text-justify py-4 px-6 whitespace-nowrap'>
-				<div className='text-sm text-gray-600'>{ticket.estimatedTime}</div>
-			</td>
-			<td className='text-justify py-4 px-6 whitespace-nowrap'>
-				<div className='text-sm text-gray-600'>{ticket.priority}</div>
-			</td>
-			<td className='text-justify py-4 px-6 whitespace-nowrap'>
-				<div className='text-sm text-gray-600'>{ticket.status}</div>
-			</td>
-			<td className='text-justify py-4 px-6 whitespace-nowrap'>
-				<div className='text-sm text-gray-600'>{ticket.type}</div>
-			</td>
+		<tr key={data.id}>
+			{showTitle && (
+				<td className='text-justify py-4 px-6 whitespace-nowrap'>
+					<div className='text-sm text-gray-600'>{data.title}</div>
+				</td>
+			)}
+			{showDescription && (
+				<td className='text-justify py-4 px-6 whitespace-nowrap'>
+					<div className='text-sm text-gray-600'>{data.description}</div>
+				</td>
+			)}
+			{showEmployees && (
+				<td className='text-justify py-4 px-6 whitespace-nowrap'>
+					<div className='text-sm text-gray-600'>{data.employees}</div>
+				</td>
+			)}
+			{showPriority && (
+				<td className='text-justify py-4 px-6 whitespace-nowrap'>
+					<div className='text-sm text-gray-600'>{data.priority}</div>
+				</td>
+			)}
+			{showStatus && (
+				<td className='text-justify py-4 px-6 whitespace-nowrap'>
+					<div className='text-sm text-gray-600'>{data.status}</div>
+				</td>
+			)}
+			{showType && (
+				<td className='text-justify py-4 px-6 whitespace-nowrap'>
+					<div className='text-sm text-gray-600'>{data.type}</div>
+				</td>
+			)}
+			{showProject && (
+				<td className='text-justify py-4 px-6 whitespace-nowrap'>
+					<div className='text-sm text-gray-600'>{data.project}</div>
+				</td>
+			)}
 		</tr>
 	);
 };

@@ -1,0 +1,42 @@
+[
+	{
+		id: "1",
+		firstName: "Hiruzen",
+		lastName: "Sarutobi",
+		phoneNumber: "123456789",
+		email: "HS@test.com",
+		role: "ADMIN",
+	},
+	{
+		id: "2",
+		firstName: "Kakashi",
+		lastName: "Hatake",
+		phoneNumber: "123456789",
+		email: "KH@test.com",
+		role: "PROJECT_MANAGER",
+	},
+	{
+		id: "3",
+		firstName: "Naruto",
+		lastName: "Uzumaki",
+		phoneNumber: "123456789",
+		email: "NU@test.com",
+		role: "EMPLOYEE",
+	},
+	{
+		id: "4",
+		firstName: "Sasuke",
+		lastName: "Uchiha",
+		phoneNumber: "123456789",
+		email: "SU@test.com",
+		role: "EMPLOYEE",
+	},
+	{
+		id: "5",
+		firstName: "Sakura",
+		lastName: "Haruno",
+		phoneNumber: "123456789",
+		email: "SH@test.com",
+		role: "EMPLOYEE",
+	},
+];

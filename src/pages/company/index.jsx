@@ -1,9 +1,23 @@
 import React, { Fragment, useState } from "react";
 import { Transition, Dialog } from "@headlessui/react";
-import AdminTable from '../../components/table/AdminTable'
+import AdminTable from "../../components/table/AdminTable";
+import useSWR from "swr";
+
+async function fetcher(url) {
+	const res = await fetch(url);
+	return res.json();
+}
 
 export default function Employee() {
 	const [isOpen, setIsOpen] = useState(false);
+
+	const url = "http://localhost:3000/api/employees";
+	const { data, error } = useSWR(url, fetcher);
+
+	if (error) return <div>failed to load</div>;
+	if (!data) return <div>loading...</div>;
+	const { employees } = data;
+	console.log(employees);
 
 	function closeModal() {
 		setIsOpen(false);
@@ -21,11 +35,11 @@ export default function Employee() {
 	return (
 		<div className='h-full w-full bg-gray-200'>
 			<div className='px-12 pt-8'>
-				<h1 className='font-bold text-2xl'>Administration</h1>
+				<h1 className='font-bold text-2xl'>Company</h1>
 			</div>
-			<div className=' bg-white mx-4 my-4 shadow-sm w-9/10 h-5/6 border rounded-xl border-gray-100'>
+			<div className=' bg-white mx-4 my-4 shadow-sm w-9/10 h-3/4 border rounded-xl border-gray-100'>
 				<div className='flex border-b p-3 border-gray-100 justify-between'>
-					<h1 className='font-semibold'>Organization</h1>
+					<h1 className='font-semibold'>Employees</h1>
 					<button
 						onClick={openModal}
 						className='rounded bg-red-700 text-white text-xs px-4 py-2 font-semibold'>

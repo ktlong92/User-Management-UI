@@ -1,11 +1,10 @@
 import NextAuth from "next-auth";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
-import clientPromise from "lib/mongodb";
+import clientPromise from "../../../lib/mongodb";
 import CredentialsProvider from "next-auth/providers/credentials";
 import AtlassianProvider from "next-auth/providers/atlassian";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import { autocompleteClasses } from "@mui/material";
 
 export default NextAuth({
 	// Database connection adapters
