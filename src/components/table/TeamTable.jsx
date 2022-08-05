@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Employee from "../employee/Employee";
-import useEmployeeInfo from "../../hooks/swr/use-employee-info/useEmployeeInfo"
+import useSWR from "swr";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	[`&.${tableCellClasses.head}`]: {
@@ -19,11 +19,21 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	},
 }));
 
+async function fetcher(url) {
+	const res = await fetch(url);
+	return res.json();
+}
+
 export default function TeamTable() {
-	
-	const { employees } = useEmployeeInfo();
+	const url = "http://localhost:3000/api/employees";
+	const { data, error } = useSWR(url, fetcher);
+
+	if (error) return <div>failed to load</div>;
+	if (!data) return <div>loading...</div>;
+	const { employees } = data;
+
 	const rowsPerPage = 3;
-	const page = 1;
+	const page = 0;
 	
 
 	return (
@@ -32,8 +42,8 @@ export default function TeamTable() {
 				<TableHead>
 					<TableRow>
 						<StyledTableCell align='left'>Name</StyledTableCell>
+						<StyledTableCell align='left'>Phone Number</StyledTableCell>
 						<StyledTableCell align='left'>Email</StyledTableCell>
-						<StyledTableCell align='center'>Phone Number</StyledTableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
@@ -41,6 +51,7 @@ export default function TeamTable() {
 						?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 						.map((data) => (
 							<Employee
+								data={data}
 								key={data.id}
 								showName
 								showEmail

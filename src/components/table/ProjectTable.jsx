@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Project from "../project/Project";
-import useProjectInfo from "../../hooks/swr/use-project-info/useProjectInfo";
+import useSWR from "swr";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	[`&.${tableCellClasses.head}`]: {
@@ -19,17 +19,28 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	},
 }));
 
+async function fetcher(url) {
+	const res = await fetch(url);
+	return res.json();
+}
+
 export default function ProjectTable() {
-	const { projects } = useProjectInfo();
+	const url = "http://localhost:3000/api/projects";
+	const { data, error } = useSWR(url, fetcher);
+
+	if (error) return <div>failed to load</div>;
+	if (!data) return <div>loading...</div>;
+	const { projects } = data;
+
 	const rowsPerPage = 3;
-	const page = 1;
+	const page = 0;
 
 	return (
 		<TableContainer container={Paper}>
 			<Table sx={{ minWidth: 650 }} aria-label='simple table'>
 				<TableHead>
 					<TableRow>
-						<StyledTableCell align='justify'>Name</StyledTableCell>
+						<StyledTableCell align='justify'>Title</StyledTableCell>
 						<StyledTableCell align='justify'>Description</StyledTableCell>
 						<StyledTableCell align='justify'>Employees</StyledTableCell>
 					</TableRow>
@@ -38,7 +49,7 @@ export default function ProjectTable() {
 					{projects
 						?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 						.map((data) => (
-							<Project key={data.id} showName showDescription showEmployees />
+							<Project data={data} key={data.id} showTitle showDescription showEmployees />
 						))}
 				</TableBody>
 			</Table>

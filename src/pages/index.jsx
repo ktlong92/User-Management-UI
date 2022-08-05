@@ -3,16 +3,25 @@ import React, { Fragment, useState } from "react";
 import { Transition, Dialog } from "@headlessui/react";
 import CardSm from "../components/card/CardSm";
 import ProjectTable from "../components/table/ProjectTable";
-// import Priority from "../components/chart/Priority";
+import Project from "../components/project/Project";
+import useSWR from "swr";
+import Priority from "../components/chart/Priority";
+
+// async function fetcher(url) {
+// 	const res = await fetch(url);
+// 	return res.json();
+// }
 
 const Dashboard = () => {
-	
-	const { data: session, status } = useSession();
-	
-	const PROJECT_API_BASE_URL = "http://localhost:8080/api/v1/projects";
-	
 	const [isOpen, setIsOpen] = useState(false);
-	const [responseProject, setResponseProject] = useState();
+	const project = Project;
+	// const url = "http://localhost:3000/api/projects";
+	// const { data, error } = useSWR(url, fetcher);
+
+	// if (error) return <div>failed to load</div>;
+	// if (!data) return <div>loading...</div>;
+	// const { projects } = data;
+	// console.log(projects);
 
 	function closeModal() {
 		setIsOpen(false);
@@ -22,41 +31,8 @@ const Dashboard = () => {
 		setIsOpen(true);
 	}
 
-	const [project, setProject] = useState({
-		name: "",
-		description: "",
-		employees: "",
-	});
-
-	const handleChange = (event) => {
-		const value = event.target.value;
-		setProject({ ...project, [event.target.name]: value });
-	};
-
-	const saveProject = async (e) => {
-		e.preventDefault();
-		const response = await fetch(PROJECT_API_BASE_URL, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(project),
-		});
-		if (!response.ok) {
-			throw new Error("Something went wrong");
-		}
-		const _project = await response.json();
-		setResponseProject(_project);
-		reset(e);
-	};
-
 	const reset = (e) => {
 		e.preventDefault();
-		setProject({
-			name: "",
-			description: "",
-			employees: "",
-		});
 		setIsOpen(false);
 	};
 
@@ -98,13 +74,13 @@ const Dashboard = () => {
 												<div className='py-2'>
 													<div className='h-14 my-4'>
 														<label className='block text-gray-600 text-sm font-normal'>
-															Name
+															Title
 														</label>
 														<input
 															type='text'
-															name='projectName'
-															value={project.projectName}
-															onChange={(e) => handleChange(e)}
+															name='title'
+															value={project.title}
+															// onChange={(e) => handleChange(e)}
 															className='h-10 w-96 border mt-2 px-2 py-2'></input>
 													</div>
 													<div className='h-14 my-4'>
@@ -115,7 +91,7 @@ const Dashboard = () => {
 															type='text'
 															name='description'
 															value={project.description}
-															onChange={(e) => handleChange(e)}
+															// onChange={(e) => handleChange(e)}
 															className='h-10 w-96 border mt-2 px-2 py-2'></input>
 													</div>
 													<div className='h-14 my-4'>
@@ -126,12 +102,12 @@ const Dashboard = () => {
 															type='text'
 															name='employees'
 															value={project.employees}
-															onChange={(e) => handleChange(e)}
+															// onChange={(e) => handleChange(e)}
 															className='h-10 w-96 border mt-2 px-2 py-2'></input>
 													</div>
 													<div className='h-14 my-4 space-x-4 pt-4'>
 														<button
-															onClick={saveProject}
+															// onClick={saveProject}
 															className='rounded text-white font-semibold bg-green-600 hover:bg-green-800 py-2 px-6'>
 															SUBMIT
 														</button>
@@ -154,10 +130,10 @@ const Dashboard = () => {
 					</div>
 				</div>
 			</div>
-			<div className='flex mx-12 p-4 items-center justify-between'>
-				<CardSm Title='Tickets by Priority'></CardSm>
-				<CardSm Title='Tickets by Status'></CardSm>
-				<CardSm Title='Tickets by Type'></CardSm>
+			<div className='flex mx-12 p-4 items-center justify-between' >
+				<CardSm Title='Tickets by Priority' />
+				<CardSm Title='Tickets by Status' />
+				<CardSm Title='Tickets by Type' />
 			</div>
 		</div>
 	);

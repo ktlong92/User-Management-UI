@@ -6,7 +6,7 @@ const Employee = ({ data, showName, showPhoneNumber, showEmail, showRole }) => {
 			{showName && (
 				<td className='text-justify py-4 px-6 whitespace-nowrap'>
 					<div className='text-sm text-gray-600'>
-						{data.firstName + "" + data.lastName}
+						{data.firstName + " " + data.lastName}
 					</div>
 				</td>
 			)}

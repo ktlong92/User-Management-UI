@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Ticket from "../ticket/Ticket";
-import useTicketInfo from "../../hooks/swr/use-ticket-info/useTicketInfo";
+import useSWR from "swr";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -20,10 +20,21 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	},
 }));
 
-export default function TicketTable1() {
-	const { tickets } = useTicketInfo();
+async function fetcher(url) {
+	const res = await fetch(url);
+	return res.json();
+}
+
+export default function TicketTable2() {
+	const url = "http://localhost:3000/api/tickets";
+	const { data, error } = useSWR(url, fetcher);
+
+	if (error) return <div>failed to load</div>;
+	if (!data) return <div>loading...</div>;
+	const { tickets } = data;
+
 	const rowsPerPage = 3;
-	const page = 1;
+	const page = 0;
 
 	return (
 		<TableContainer container={Paper}>
@@ -40,6 +51,7 @@ export default function TicketTable1() {
 						?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 						.map((data) => (
 							<Ticket
+								data={data}
 								key={data.id}
 								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
 								showTitle

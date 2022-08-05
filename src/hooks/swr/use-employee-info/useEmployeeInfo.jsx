@@ -1,15 +1,17 @@
-import useSWR from "swr";
-import axios from "axios";
+// import useSWR from "swr";
 
-export const formatUrl = () => axios('employees');
+// export default function useEmployeeInfo() {
+// 	const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-export default function useEmployeeInfo() {
-	const url = formatUrl(); 
-	const { data, error } = useSWR(url);
+// 	const { data, error } = useSWR(
+// 		"http://localhost:8080/api/v1/employees",
+// 		fetcher,
+// 		(errorRetryInterval = 5000)
+// 	);
 
-	return {
-		employee: data || {},
-		isLoading: !error && !data,
-		isError: error,
-	};
-}
+// 	return {
+// 		employeeInfo: data,
+// 		isLoading: !error && !data,
+// 		isError: error,
+// 	};
+// }

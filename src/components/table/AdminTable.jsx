@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Employee from "../employee/Employee";
-import useEmployeeInfo from "../../hooks/swr/use-employee-info/useEmployeeInfo";
+import useSWR from "swr";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	[`&.${tableCellClasses.head}`]: {
@@ -19,20 +19,30 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	},
 }));
 
-export default function AdminTable() {
+async function fetcher(url) {
+	const res = await fetch(url);
+	return res.json();
+}
 
-	const { employees } = useEmployeeInfo();
-	const rowsPerPage = 3;
-	const page = 1;
-	
+export default function AdminTable() {
+	const url = "http://localhost:3000/api/employees";
+	const { data, error } = useSWR(url, fetcher);
+
+	if (error) return <div>failed to load</div>;
+	if (!data) return <div>loading...</div>;
+	const { employees } = data;
+
+	const rowsPerPage = 10;
+	const page = 0;
+
 	return (
 		<TableContainer container={Paper}>
 			<Table sx={{ minWidth: 650 }} aria-label='simple table'>
 				<TableHead>
 					<TableRow>
 						<StyledTableCell align='left'>Name</StyledTableCell>
-						<StyledTableCell align='left'>Email</StyledTableCell>
 						<StyledTableCell align='left'>Phone Number</StyledTableCell>
+						<StyledTableCell align='left'>Email</StyledTableCell>
 						<StyledTableCell align='left'>Role</StyledTableCell>
 					</TableRow>
 				</TableHead>
@@ -40,7 +50,14 @@ export default function AdminTable() {
 					{employees
 						?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 						.map((data) => (
-							<Employee key={data.id} showName showEmail showPhoneNumber showRole />
+							<Employee
+								data={data}
+								key={data.id}
+								showName
+								showEmail
+								showPhoneNumber
+								showRole
+							/>
 						))}
 				</TableBody>
 			</Table>

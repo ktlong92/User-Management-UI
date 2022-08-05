@@ -1,15 +1,17 @@
-import useSWR from "swr";
-import axios from "axios";
+// import useSWR from "swr";
 
-export const formatUrl = () => axios('tickets');
+// export default function useTicketInfo() {
+// 	const fetcher = (...args) => fetch(...args).then((res) => res.json());
+	
+// 	const { data, error } = useSWR(
+// 		"http://localhost:8080/api/v1/tickets",
+// 		fetcher,
+// 		(errorRetryInterval = 5000)
+// 	);
 
-export default function useTicketInfo() {
-	const url = formatUrl();
-	const { data, error } = useSWR(url);
-
-	return {
-		ticket: data || {},
-		isLoading: !error && !data,
-		isError: error,
-	};
-}
+// 	return {
+// 		ticketInfo: data,
+// 		isLoading: !error && !data,
+// 		isError: error,
+// 	};
+// }

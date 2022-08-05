@@ -1,12 +1,20 @@
-import TicketTable1 from "../../components/table/TicketTable1"
-import Pagination from "@mui/material/Pagination";
+import TicketTable1 from "../../components/table/TicketTable1";
+import useSWR from "swr";
 
+async function fetcher(url) {
+	const res = await fetch(url);
+	return res.json();
+}
 
 export default function Ticket() {
 
-	const handleNextButtonClick = () => {
-		setPage(page + 1);
-	};
+	const url = "http://localhost:3000/api/tickets";
+	const { data, error } = useSWR(url, fetcher);
+
+	if (error) return <div>failed to load</div>;
+	if (!data) return <div>loading...</div>;
+	const { tickets } = data;
+	console.log(tickets);
 
 	return (
 		<div className='h-full w-full bg-gray-200'>
@@ -20,13 +28,6 @@ export default function Ticket() {
 				<div>
 					<TicketTable1 />
 				</div>
-				<Pagination
-					// count={tickets.length / rowsPerPage}
-					variant='outlined'
-					color='error'
-					onChange={handleNextButtonClick}
-					defaultPage={0}
-				/>
 			</div>
 		</div>
 	);
