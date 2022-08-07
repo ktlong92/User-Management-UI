@@ -62,7 +62,7 @@ export default function AdminTable() {
 						))}
 				</TableBody>
 			</Table>
-		<Pagination variant='outlined' color='error' />
+			<Pagination variant='outlined' color='error' />
 		</TableContainer>
 	);
 }
