@@ -29,7 +29,7 @@ const SideNav = () => {
 						className={`text-white text-2lg ml-4 font-medium origin-left duration-300 ${
 							!open && "scale-0"
 						}`}>
-						User
+						RISE ABOVE
 					</h1>
 				</div>
 				{/* <div
@@ -83,7 +83,7 @@ const SideNav = () => {
 							</div>
 						</li>
 					</Link>
-					<Link href='/ticket'>
+					{/* <Link href='/ticket'>
 						<li className='text-white text-lg flex items-center gap-x-4 cursor-pointer p-2 mt-4 hover:bg-light-white rounded-md'>
 							<MdReceipt />
 							<div
@@ -93,7 +93,7 @@ const SideNav = () => {
 								Tickets
 							</div>
 						</li>
-					</Link>
+					</Link> */}
 				</ul>
 			</div>
 		</div>

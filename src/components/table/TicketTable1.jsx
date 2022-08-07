@@ -6,6 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Pagination from "@mui/material/Pagination";
 import Ticket from "../ticket/Ticket";
 import useSWR from "swr";
 
@@ -36,31 +37,34 @@ export default function TicketTable1() {
 	const page= 0;
 
 	return (
-		<TableContainer container={Paper}>
-			<Table sx={{ minWidth: 650 }} aria-label='simple table'>
-				<TableHead>
-					<TableRow>
-						<StyledTableCell align='left'>Title</StyledTableCell>
-						<StyledTableCell align='left'>Priority</StyledTableCell>
-						<StyledTableCell align='left'>Status</StyledTableCell>
-						<StyledTableCell align='left'>Project Name</StyledTableCell>
-					</TableRow>
-				</TableHead>
-				<TableBody>
-					{tickets
-						?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-						.map((data) => (
-							<Ticket
-								data={data}
-								key={data.id}
-								showProject
-								showTitle
-								showStatus
-								showPriority
-							/>
-						))}
-				</TableBody>
-			</Table>
-		</TableContainer>
+		<>
+			<TableContainer container={Paper}>
+				<Table sx={{ minWidth: 650 }} aria-label='simple table'>
+					<TableHead>
+						<TableRow>
+							<StyledTableCell align='left'>Title</StyledTableCell>
+							<StyledTableCell align='left'>Priority</StyledTableCell>
+							<StyledTableCell align='left'>Status</StyledTableCell>
+							<StyledTableCell align='left'>Project Name</StyledTableCell>
+						</TableRow>
+					</TableHead>
+					<TableBody>
+						{tickets
+							?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+							.map((data) => (
+								<Ticket
+									data={data}
+									key={data.id}
+									showProject
+									showTitle
+									showStatus
+									showPriority
+								/>
+							))}
+					</TableBody>
+				</Table>
+			</TableContainer>
+			<Pagination variant='outlined' color='error'/>
+		</>
 	);
 }

@@ -6,6 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Pagination from "@mui/material/Pagination";
 import Employee from "../employee/Employee";
 import useSWR from "swr";
 
@@ -61,6 +62,7 @@ export default function AdminTable() {
 						))}
 				</TableBody>
 			</Table>
+		<Pagination variant='outlined' color='error' />
 		</TableContainer>
 	);
 }

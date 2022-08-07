@@ -6,6 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Pagination from "@mui/material/Pagination";
 import Project from "../project/Project";
 import useSWR from "swr";
 
@@ -32,27 +33,36 @@ export default function ProjectTable() {
 	if (!data) return <div>loading...</div>;
 	const { projects } = data;
 
-	const rowsPerPage = 3;
+	const rowsPerPage = 6;
 	const page = 0;
 
 	return (
-		<TableContainer container={Paper}>
-			<Table sx={{ minWidth: 650 }} aria-label='simple table'>
-				<TableHead>
-					<TableRow>
-						<StyledTableCell align='justify'>Title</StyledTableCell>
-						<StyledTableCell align='justify'>Description</StyledTableCell>
-						<StyledTableCell align='justify'>Employees</StyledTableCell>
-					</TableRow>
-				</TableHead>
-				<TableBody>
-					{projects
-						?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-						.map((data) => (
-							<Project data={data} key={data.id} showTitle showDescription showEmployees />
-						))}
-				</TableBody>
-			</Table>
-		</TableContainer>
+		<>
+			<TableContainer container={Paper}>
+				<Table sx={{ minWidth: 650, minHeight: 500 }} aria-label='simple table'>
+					<TableHead>
+						<TableRow>
+							<StyledTableCell align='justify'>Title</StyledTableCell>
+							<StyledTableCell align='justify'>Description</StyledTableCell>
+							<StyledTableCell align='justify'>Employees</StyledTableCell>
+						</TableRow>
+					</TableHead>
+					<TableBody>
+						{projects
+							?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+							.map((data) => (
+								<Project
+									data={data}
+									key={data.id}
+									showTitle
+									showDescription
+									showEmployees
+								/>
+							))}
+					</TableBody>
+				</Table>
+			</TableContainer>
+			<Pagination variant='outlined' color='error' />
+		</>
 	);
 }

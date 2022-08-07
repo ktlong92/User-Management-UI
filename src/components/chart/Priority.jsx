@@ -10,7 +10,7 @@ async function fetcher(url) {
 	return res.json();
 }
 
-const Priority = ({ data, options }) => {
+const Priority = () => {
 	const [chart, setChart] = useState([]);
 
 	const url = "http://localhost:3000/api/tickets";

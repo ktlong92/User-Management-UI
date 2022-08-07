@@ -1,3 +1,13 @@
+// import { connectToDatabase } from "../../utils/mongodb";
+
+// export default async function handler(req, res) {
+// 	const { db } = await connectToDatabase();
+
+// 	const data = await db.collection("projects").find({}).toArray();
+
+// 	res.json(data);
+// }
+
 export default function handler(req, res) {
 	res.status(200).json({
 		projects: [
@@ -27,21 +37,21 @@ export default function handler(req, res) {
 				title: "Project 4",
 				description: "Description of project 1",
 				employees:
-					"Kakashi Hatake, Naruto Uzamaki, Sasuke Uchiha, Sakura Haruno",
+					"Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
 			},
 			{
 				id: "5",
 				title: "Project 5",
 				description: "Description of project 1",
 				employees:
-					"Kakashi Hatake, Naruto Uzamaki, Sasuke Uchiha, Sakura Haruno",
+					"Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
 			},
 			{
 				id: "6",
 				title: "Project 6",
 				description: "Description of project 1",
 				employees:
-					"Kakashi Hatake, Naruto Uzamaki, Sasuke Uchiha, Sakura Haruno",
+					"Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
 			},
 		],
 	});

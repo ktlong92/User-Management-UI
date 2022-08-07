@@ -1,23 +1,9 @@
 import React, { Fragment, useState } from "react";
 import { Transition, Dialog } from "@headlessui/react";
 import AdminTable from "../../components/table/AdminTable";
-import useSWR from "swr";
-
-async function fetcher(url) {
-	const res = await fetch(url);
-	return res.json();
-}
 
 export default function Employee() {
 	const [isOpen, setIsOpen] = useState(false);
-
-	const url = "http://localhost:3000/api/employees";
-	const { data, error } = useSWR(url, fetcher);
-
-	if (error) return <div>failed to load</div>;
-	if (!data) return <div>loading...</div>;
-	const { employees } = data;
-	console.log(employees);
 
 	function closeModal() {
 		setIsOpen(false);

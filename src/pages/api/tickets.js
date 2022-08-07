@@ -1,10 +1,20 @@
+// import { connectToDatabase } from "../../utils/mongodb";
+
+// export default async function handler(req, res) {
+// 	const { db } = await connectToDatabase();
+
+// 	const data = await db.collection("tickets").find({}).toArray();
+
+// 	res.json(data);
+// }
 export default function handler(req, res) {
 	res.status(200).json({
 		tickets: [
 			{
 				id: "1",
 				title: "Test",
-				description: "Test description",
+				description:
+					"Test description that is super long and takes up a lot of space",
 				employees: "Naruto Uzumaki",
 				type: "FEATURE",
 				status: "OPEN",
@@ -14,7 +24,8 @@ export default function handler(req, res) {
 			{
 				id: "2",
 				title: "Test1",
-				description: "Test description",
+				description:
+					"Test description that is super long and takes up a lot of space",
 				employees: "Naruto Uzumaki, Sasuke Uchiha",
 				type: "ERROR",
 				status: "IN-PROGRESS",
@@ -24,8 +35,9 @@ export default function handler(req, res) {
 			{
 				id: "3",
 				title: "Test2",
-				description: "Test description",
-				employees: "Sakura Haruno",
+				description:
+					"Test description that is super long and takes up a lot of space",
+				employees: "Naruto Uzumaki, Sasuke Uchiha, Sakura Haruno",
 				type: "FEATURE",
 				status: "OPEN",
 				priority: "MEDIUM",
@@ -34,23 +46,98 @@ export default function handler(req, res) {
 			{
 				id: "4",
 				title: "Test3",
-				description: "Test description",
+				description:
+					"Test description that is super long and takes up a lot of space",
 				employees: "Naruto Uzumaki, Sasuke Uchiha, Sakura Haruno",
 				type: "BUG",
 				status: "RESOLVED",
 				priority: "LOW",
-				project: "Project 4",
+				project: "Project 1",
 			},
 			{
 				id: "5",
 				title: "Test4",
-				description: "Test description",
-				employees: "Kakashi Hatake, Naruto Uzumaki, Sasuke Uchiha, Sakura Haruno",
+				description:
+					"Test description that is super long and takes up a lot of space",
+				employees:
+					"Kakashi Hatake, Naruto Uzumaki, Sasuke Uchiha, Sakura Haruno",
+				type: "ERROR",
+				status: "RESOLVED",
+				priority: "LOW",
+				project: "Project 2",
+			},
+			{
+				id: "6",
+				title: "Test5",
+				description:
+					"Test description that is super long and takes up a lot of space",
+				employees:
+					"Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
 				type: "ERROR",
 				status: "RESOLVED",
 				priority: "LOW",
 				project: "Project 5",
 			},
+			{
+				id: "7",
+				title: "Test6",
+				description:
+					"Test description that is super long and takes up a lot of space",
+				employees:
+					"Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
+				type: "ERROR",
+				status: "RESOLVED",
+				priority: "LOW",
+				project: "Project 4",
+			},
+			{
+				id: "8",
+				title: "Test7",
+				description:
+					"Test description that is super long and takes up a lot of space",
+				employees:
+					"Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
+				type: "ERROR",
+				status: "RESOLVED",
+				priority: "LOW",
+				project: "Project 5",
+			},
+			{
+				id: "9",
+				title: "Test8",
+				description:
+					"Test description that is super long and takes up a lot of space",
+				employees:
+					"Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
+				type: "ERROR",
+				status: "RESOLVED",
+				priority: "LOW",
+				project: "Project 6",
+			},
+			{
+				id: "10",
+				title: "Test9",
+				description:
+					"Test description that is super long and takes up a lot of space",
+				employees:
+					"Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
+				type: "ERROR",
+				status: "RESOLVED",
+				priority: "LOW",
+				project: "Project 5",
+			},
+			{
+				id: "11",
+				title: "Test10",
+				description:
+					"Test description that is super long and takes up a lot of space",
+				employees:
+					"Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
+				type: "ERROR",
+				status: "RESOLVED",
+				priority: "LOW",
+				project: "Project 6",
+			},
 		],
 	});
-};
+}

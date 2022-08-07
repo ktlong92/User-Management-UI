@@ -1,27 +1,16 @@
 import { useSession } from "next-auth/react";
 import React, { Fragment, useState } from "react";
 import { Transition, Dialog } from "@headlessui/react";
-import CardSm from "../components/card/CardSm";
 import ProjectTable from "../components/table/ProjectTable";
 import Project from "../components/project/Project";
-import useSWR from "swr";
-import Priority from "../components/chart/Priority";
-
-// async function fetcher(url) {
-// 	const res = await fetch(url);
-// 	return res.json();
-// }
 
 const Dashboard = () => {
 	const [isOpen, setIsOpen] = useState(false);
-	const project = Project;
-	// const url = "http://localhost:3000/api/projects";
-	// const { data, error } = useSWR(url, fetcher);
-
-	// if (error) return <div>failed to load</div>;
-	// if (!data) return <div>loading...</div>;
-	// const { projects } = data;
-	// console.log(projects);
+	const [project, setProject] = useState({
+		title: "",
+		description: "",
+		employees: "",
+	});
 
 	function closeModal() {
 		setIsOpen(false);
@@ -31,8 +20,29 @@ const Dashboard = () => {
 		setIsOpen(true);
 	}
 
+	const handleChange = (event) => {
+		const value = event.target.value;
+		setProject({ ...project, [event.target.name]: value });
+	}
+
+	const saveProject = async (e) => {
+		e.preventDefault();
+		const response = await fetch("http://localhost:3000/api/projects", {
+			method: "POST",
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(project),
+		});
+		const _project = await response.json();
+		reset(e);
+	};
+
 	const reset = (e) => {
 		e.preventDefault();
+		setProject({
+			title: "",
+			description: "",
+			employees: "",
+		});
 		setIsOpen(false);
 	};
 
@@ -42,7 +52,7 @@ const Dashboard = () => {
 				<h1 className='font-bold text-2xl'>Dashboard</h1>
 			</div>
 			<div className='flex ml-12 mr-4 mt-6'>
-				<div className=' bg-white ml-2 shadow-sm w-full h-80 border rounded-xl border-gray-100'>
+				<div className=' bg-white ml-2 shadow-sm w-full h-5/6 border rounded-xl border-gray-100'>
 					<div className='flex border-b p-3 border-gray-100 justify-between'>
 						<h1 className='font-semibold'>PROJECTS</h1>
 						<button
@@ -80,7 +90,7 @@ const Dashboard = () => {
 															type='text'
 															name='title'
 															value={project.title}
-															// onChange={(e) => handleChange(e)}
+															onChange={(e) => handleChange(e)}
 															className='h-10 w-96 border mt-2 px-2 py-2'></input>
 													</div>
 													<div className='h-14 my-4'>
@@ -91,7 +101,7 @@ const Dashboard = () => {
 															type='text'
 															name='description'
 															value={project.description}
-															// onChange={(e) => handleChange(e)}
+															onChange={(e) => handleChange(e)}
 															className='h-10 w-96 border mt-2 px-2 py-2'></input>
 													</div>
 													<div className='h-14 my-4'>
@@ -102,12 +112,12 @@ const Dashboard = () => {
 															type='text'
 															name='employees'
 															value={project.employees}
-															// onChange={(e) => handleChange(e)}
+															onChange={(e) => handleChange(e)}
 															className='h-10 w-96 border mt-2 px-2 py-2'></input>
 													</div>
 													<div className='h-14 my-4 space-x-4 pt-4'>
 														<button
-															// onClick={saveProject}
+															onClick={saveProject}
 															className='rounded text-white font-semibold bg-green-600 hover:bg-green-800 py-2 px-6'>
 															SUBMIT
 														</button>
@@ -130,11 +140,11 @@ const Dashboard = () => {
 					</div>
 				</div>
 			</div>
-			<div className='flex mx-12 p-4 items-center justify-between' >
+			{/* <div className='flex mx-12 p-4 items-center justify-between' >
 				<CardSm Title='Tickets by Priority' />
 				<CardSm Title='Tickets by Status' />
 				<CardSm Title='Tickets by Type' />
-			</div>
+			</div> */}
 		</div>
 	);
 };
