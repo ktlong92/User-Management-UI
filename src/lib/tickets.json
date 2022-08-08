@@ -1,123 +1,134 @@
 [
 	{
 		"id": "1",
-		title: "Test",
-		description:
+		"title": "Test1",
+		"description":
 			"Test description that is super long and takes up a lot of space",
-		employees: "Naruto Uzumaki",
-		type: "FEATURE",
-		status: "OPEN",
-		priority: "IMMEDIATE",
-		project: "Project 1",
+		"employees": "Naruto Uzumaki",
+		"type": "FEATURE",
+		"status": "OPEN",
+		"priority": "IMMEDIATE",
+		"project": "1"
 	},
 	{
-		id: "2",
-		title: "Test1",
-		description:
+		"id": "2",
+		"title": "Test2",
+		"description":
 			"Test description that is super long and takes up a lot of space",
-		employees: "Naruto Uzumaki, Sasuke Uchiha",
-		type: "ERROR",
-		status: "IN-PROGRESS",
-		priority: "HIGH",
-		project: "Project 2",
+		"employees": "Naruto Uzumaki, Sasuke Uchiha",
+		"type": "ERROR",
+		"status": "IN-PROGRESS",
+		"priority": "HIGH",
+		"project": "2"
 	},
 	{
-		id: "3",
-		title: "Test2",
-		description:
+		"id": "3",
+		"title": "Test3",
+		"description":
 			"Test description that is super long and takes up a lot of space",
-		employees: "Naruto Uzumaki, Sasuke Uchiha, Sakura Haruno",
-		type: "FEATURE",
-		status: "OPEN",
-		priority: "MEDIUM",
-		project: "Project 3",
+		"employees": "Naruto Uzumaki, Sasuke Uchiha, Sakura Haruno",
+		"type": "FEATURE",
+		"status": "OPEN",
+		"priority": "MEDIUM",
+		"project": "3"
 	},
 	{
-		id: "4",
-		title: "Test3",
-		description:
+		"id": "4",
+		"title": "Test4",
+		"description":
 			"Test description that is super long and takes up a lot of space",
-		employees: "Naruto Uzumaki, Sasuke Uchiha, Sakura Haruno",
-		type: "BUG",
-		status: "RESOLVED",
-		priority: "LOW",
-		project: "Project 1",
+		"employees": "Naruto Uzumaki, Sasuke Uchiha, Sakura Haruno",
+		"type": "BUG",
+		"status": "RESOLVED",
+		"priority": "LOW",
+		"project": "1"
 	},
 	{
-		id: "5",
-		title: "Test4",
-		description:
+		"id": "5",
+		"title": "Test5",
+		"description":
 			"Test description that is super long and takes up a lot of space",
-		employees: "Kakashi Hatake, Naruto Uzumaki, Sasuke Uchiha, Sakura Haruno",
-		type: "ERROR",
-		status: "RESOLVED",
-		priority: "LOW",
-		project: "Project 2",
+		"employees": "Kakashi Hatake, Naruto Uzumaki, Sasuke Uchiha, Sakura Haruno",
+		"type": "ERROR",
+		"status": "RESOLVED",
+		"priority": "LOW",
+		"project": "2"
 	},
 	{
-		id: "6",
-		title: "Test5",
-		description:
+		"id": "6",
+		"title": "Test6",
+		"description":
 			"Test description that is super long and takes up a lot of space",
-		employees: "Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
-		type: "ERROR",
-		status: "RESOLVED",
-		priority: "LOW",
-		project: "Project 5",
+		"employees": "Kakashi Hatake, Naruto Uzumaki, Sasuke Uchiha, Sakura Haruno",
+		"type": "ERROR",
+		"status": "RESOLVED",
+		"priority": "LOW",
+		"project": "3"
 	},
 	{
-		id: "7",
-		title: "Test6",
-		description:
+		"id": "7",
+		"title": "Test7",
+		"description":
 			"Test description that is super long and takes up a lot of space",
-		employees: "Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
-		type: "ERROR",
-		status: "RESOLVED",
-		priority: "LOW",
-		project: "Project 4",
+		"employees": "Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
+		"type": "ERROR",
+		"status": "RESOLVED",
+		"priority": "LOW",
+		"project": "4"
 	},
 	{
-		id: "8",
-		title: "Test7",
-		description:
+		"id": "8",
+		"title": "Test8",
+		"description":
 			"Test description that is super long and takes up a lot of space",
-		employees: "Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
-		type: "ERROR",
-		status: "RESOLVED",
-		priority: "LOW",
-		project: "Project 5",
+		"employees": "Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
+		"type": "ERROR",
+		"status": "RESOLVED",
+		"priority": "LOW",
+		"project": "5"
 	},
 	{
-		id: "9",
-		title: "Test8",
-		description:
+		"id": "9",
+		"title": "Test9",
+		"description":
 			"Test description that is super long and takes up a lot of space",
-		employees: "Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
-		type: "ERROR",
-		status: "RESOLVED",
-		priority: "LOW",
-		project: "Project 6",
+		"employees": "Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
+		"type": "ERROR",
+		"status": "RESOLVED",
+		"priority": "LOW",
+		"project": "6"
 	},
 	{
-		id: "10",
-		title: "Test9",
-		description:
+		"id": "10",
+		"title": "Test10",
+		"description":
 			"Test description that is super long and takes up a lot of space",
-		employees: "Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
-		type: "ERROR",
-		status: "RESOLVED",
-		priority: "LOW",
-		project: "Project 5",
+		"employees": "Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
+		"type": "ERROR",
+		"status": "RESOLVED",
+		"priority": "LOW",
+		"project": "4"
 	},
 	{
-		id: "11",
-		title: "Test10",
-		description:
+		"id": "11",
+		"title": "Test11",
+		"description":
 			"Test description that is super long and takes up a lot of space",
-		employees: "Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
-		type: "ERROR",
-		status: "RESOLVED",
-		priority: "LOW",
-		project: "Project 6",
+		"employees": "Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
+		"type": "ERROR",
+		"status": "RESOLVED",
+		"priority": "LOW",
+		"project": "5"
 	},
-];
+	{
+		"id": "12",
+		"title": "Test12",
+		"description":
+			"Test description that is super long and takes up a lot of space",
+		"employees": "Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
+		"type": "ERROR",
+		"status": "RESOLVED",
+		"priority": "LOW",
+		"project": "6"
+	}
+]
