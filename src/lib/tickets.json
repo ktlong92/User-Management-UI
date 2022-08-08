@@ -1,6 +1,6 @@
 [
 	{
-		id: "1",
+		"id": "1",
 		title: "Test",
 		description:
 			"Test description that is super long and takes up a lot of space",

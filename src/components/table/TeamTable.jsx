@@ -6,7 +6,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Pagination from "@mui/material/Pagination";
 import Employee from "../employee/Employee";
 import useSWR from "swr";
 
@@ -33,13 +32,10 @@ export default function TeamTable() {
 	if (!data) return <div>loading...</div>;
 	const { employees } = data;
 
-	const rowsPerPage = 3;
-	const page = 0;
-
 	return (
 		<>
 			<TableContainer container={Paper}>
-				<Table sx={{ minWidth: 650 }} aria-label='simple table'>
+				<Table sx={{ minWidth: 650, minHeight: 500 }} aria-label='simple table'>
 					<TableHead>
 						<TableRow>
 							<StyledTableCell align='left'>Name</StyledTableCell>
@@ -48,21 +44,18 @@ export default function TeamTable() {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{employees
-							?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-							.map((data) => (
-								<Employee
-									data={data}
-									key={data.id}
-									showName
-									showEmail
-									showPhoneNumber
-								/>
-							))}
+						{employees?.map((data) => (
+							<Employee
+								data={data}
+								key={data.id}
+								showName
+								showEmail
+								showPhoneNumber
+							/>
+						))}
 					</TableBody>
 				</Table>
 			</TableContainer>
-			<Pagination variant='outlined' color='error' />
 		</>
 	);
 }

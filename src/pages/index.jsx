@@ -1,152 +1,102 @@
-import { useSession } from "next-auth/react";
-import React, { Fragment, useState } from "react";
-import { Transition, Dialog } from "@headlessui/react";
-import ProjectTable from "../components/table/ProjectTable";
-import Project from "../components/project/Project";
+import React from "react";
+import { signIn, signUp } from "next-auth/react";
 
-const Dashboard = () => {
-	const [isOpen, setIsOpen] = useState(false);
-	const [project, setProject] = useState({
-		title: "",
-		description: "",
-		employees: "",
-	});
+import {
+	FaAtlassian,
+	FaGithub,
+	FaGoogle,
+	FaUserAlt,
+	FaLock,
+} from "react-icons/fa";
 
-	function closeModal() {
-		setIsOpen(false);
-	}
-
-	function openModal() {
-		setIsOpen(true);
-	}
-
-	const handleChange = (event) => {
-		const value = event.target.value;
-		setProject({ ...project, [event.target.name]: value });
-	}
-
-	const saveProject = async (e) => {
-		e.preventDefault();
-		const response = await fetch("http://localhost:3000/api/projects", {
-			method: "POST",
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(project),
-		});
-		const _project = await response.json();
-		reset(e);
-	};
-
-	const reset = (e) => {
-		e.preventDefault();
-		setProject({
-			title: "",
-			description: "",
-			employees: "",
-		});
-		setIsOpen(false);
-	};
-
+function Login() {
 	return (
-		<div className='h-full w-full bg-gray-200'>
-			<div className='px-12 pt-8'>
-				<h1 className='font-bold text-2xl'>Dashboard</h1>
-			</div>
-			<div className='flex ml-12 mr-4 mt-6'>
-				<div className=' bg-white ml-2 shadow-sm w-full h-5/6 border rounded-xl border-gray-100'>
-					<div className='flex border-b p-3 border-gray-100 justify-between'>
-						<h1 className='font-semibold'>PROJECTS</h1>
-						<button
-							onClick={openModal}
-							className='rounded bg-red-700 text-white text-xs px-4 py-2 font-semibold'>
-							Add Project
-						</button>
-						<Transition appear show={isOpen} as={Fragment}>
-							<Dialog
-								as='div'
-								className='fixed inset-0 z-10 overflow-y-auto'
-								onClose={closeModal}>
-								<div className='min-h-screen px-4 text-center'>
-									<Transition.Child
-										as={Fragment}
-										enter='ease-out duration-300'
-										enterFrom='opacity-0 scale-95'
-										enterTo='opacity-100 scale-100'
-										leave='ease-in duration-200'
-										leaveFrom='opacity-100 scale-100'
-										leaveTo='opacity-0 scale-95'>
-										<div className='inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded'>
-											<Dialog.Title
-												as='h3'
-												className='text-lg font-md leading-6 text-gray-900'>
-												Add New Project
-											</Dialog.Title>
-											<div className='flex max-w-md max-auto'>
-												<div className='py-2'>
-													<div className='h-14 my-4'>
-														<label className='block text-gray-600 text-sm font-normal'>
-															Title
-														</label>
-														<input
-															type='text'
-															name='title'
-															value={project.title}
-															onChange={(e) => handleChange(e)}
-															className='h-10 w-96 border mt-2 px-2 py-2'></input>
-													</div>
-													<div className='h-14 my-4'>
-														<label className='block text-gray-600 text-sm font-normal'>
-															Description
-														</label>
-														<input
-															type='text'
-															name='description'
-															value={project.description}
-															onChange={(e) => handleChange(e)}
-															className='h-10 w-96 border mt-2 px-2 py-2'></input>
-													</div>
-													<div className='h-14 my-4'>
-														<label className='block text-gray-600 text-sm font-normal'>
-															Assign Employees
-														</label>
-														<input
-															type='text'
-															name='employees'
-															value={project.employees}
-															onChange={(e) => handleChange(e)}
-															className='h-10 w-96 border mt-2 px-2 py-2'></input>
-													</div>
-													<div className='h-14 my-4 space-x-4 pt-4'>
-														<button
-															onClick={saveProject}
-															className='rounded text-white font-semibold bg-green-600 hover:bg-green-800 py-2 px-6'>
-															SUBMIT
-														</button>
-														<button
-															onClick={reset}
-															className='rounded text-white font-semibold bg-red-600 hover:bg-red-800 py-2 px-6'>
-															Close
-														</button>
-													</div>
-												</div>
-											</div>
-										</div>
-									</Transition.Child>
+		<div className='flex flex-col items-center justify-center min-h-screen py-2 bg-gray-800'>
+			<div className='flex flex-col items-center justify-center w-full flex-1 px-20 text-center'>
+				{/* User Login Section */}
+				<div className='rounded-2xl shadow-2xl flex w-2/3 max-w-4xl'>
+					<div className='bg-white w-3/5 p-5 rounded-tl-2xl rounded-bl-2xl'>
+						<div className='text-left font-bold'>
+							<span className='text-red-600'>Rizer</span>Management
+						</div>
+						{/* Social Login Section */}
+						<div className='py-10'>
+							<h2 className='text-3xl font-bold mb-2 text-red-600'>Sign In</h2>
+							<div className='border-2 w-24 border-red-600 inline-block mb-2'></div>
+							<div className='flex justify-center my-2'>
+								<a
+									onClick={signIn}
+									className='border-2 border-gray-200 rounded-full p-3 mx-1 cursor-pointer'>
+									<FaAtlassian className='text-2xl' />
+								</a>
+								<a
+									onClick={signIn}
+									className='border-2 border-gray-200 rounded-full p-3 mx-1 cursor-pointer'>
+									<FaGithub className='text-2xl' />
+								</a>
+								<a
+									onClick={signIn}
+									className='border-2 border-gray-200 rounded-full p-3 mx-1 cursor-pointer'>
+									<FaGoogle className='text-2xl' />
+								</a>
+							</div>
+							{/* Username Login Section */}
+							<p className='text-gray-400 my-3'>or sign in with credentials</p>
+							<div className='flex flex-col items-center'>
+								<div className='bg-gray-100 w-64 p-2 flex items-center mb-3'>
+									<FaUserAlt className='text-gray-400 m-2' />
+									<input
+										type='text'
+										label='Username'
+										placeholder='Username'
+										className='bg-gray-100 outline-none text-sm flex-1'
+									/>
 								</div>
-							</Dialog>
-						</Transition>
+								<div className='bg-gray-100 w-64 p-2 flex items-center mb-3'>
+									<FaLock className='text-gray-400 m-2' />
+									<input
+										type='password'
+										label='password'
+										placeholder='Password'
+										className='bg-gray-100 outline-none text-sm flex-1'
+									/>
+								</div>
+								<div className='flex justify-between w-64 mb-5'>
+									<label className='flex items-center text-sm'>
+										<input type='checkbox' name='remember' className='mr-1' />
+										Remember me
+									</label>
+									<a href='#' className='text-sm'>
+										Forgot Password?
+									</a>
+								</div>
+								<a
+									href='../Home'
+									className='border-2 border-red-600 text-red-600 rounded-full px-12 py-2 inline-block font-semibold hover:bg-red-600 hover:text-white'>
+									Sign in
+								</a>
+							</div>
+						</div>
 					</div>
-					<div>
-						<ProjectTable />
+					{/* Sign Up Section */}
+					<div className='w-2/5 bg-red-600 text-white rounded-tr-2xl rounded-br-2xl py-36 px-12'>
+						<h2 className='text-3xl font-bold mb-2'>Sign Up</h2>
+						<div className='border-2 w-40 border-white inline-block mb-2'></div>
+						<p className='mb-10'>Create an account to get started!</p>
+						<a
+							href='../auth/SignUp'
+							className='border-2 border-white rounded-full px-12 py-2 inline-block font-semibold cursor-pointer hover:bg-white hover:text-red-600 hover:border-black'>
+							Sign up
+						</a>
 					</div>
 				</div>
 			</div>
-			{/* <div className='flex mx-12 p-4 items-center justify-between' >
-				<CardSm Title='Tickets by Priority' />
-				<CardSm Title='Tickets by Status' />
-				<CardSm Title='Tickets by Type' />
-			</div> */}
 		</div>
 	);
-};
+}
 
-export default Dashboard;
+export default Login;
+
+Login.getLayout = function PageLayout(page) {
+	return <>{page}</>;
+};

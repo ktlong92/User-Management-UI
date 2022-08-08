@@ -21,37 +21,44 @@ export default function handler(req, res) {
 			{
 				id: "2",
 				title: "Project 2",
-				description: "Description of project 1",
+				description: "Description of project 2",
 				employees:
 					"Kakashi Hatake, Naruto Uzamaki, Sasuke Uchiha, Sakura Haruno",
 			},
 			{
 				id: "3",
 				title: "Project 3",
-				description: "Description of project 1",
+				description: "Description of project 3",
 				employees:
 					"Kakashi Hatake, Naruto Uzamaki, Sasuke Uchiha, Sakura Haruno",
 			},
 			{
 				id: "4",
 				title: "Project 4",
-				description: "Description of project 1",
+				description: "Description of project 4",
 				employees:
 					"Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
 			},
 			{
 				id: "5",
 				title: "Project 5",
-				description: "Description of project 1",
+				description: "Description of project 5",
 				employees:
 					"Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
 			},
 			{
 				id: "6",
 				title: "Project 6",
-				description: "Description of project 1",
+				description: "Description of project 6",
 				employees:
 					"Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
+			},
+			{
+				id: "7",
+				title: "Project 7",
+				description: "Description of project 7",
+				employees:
+					"Asuma Sarutobi, Kakashi Hatake",
 			},
 		],
 	});

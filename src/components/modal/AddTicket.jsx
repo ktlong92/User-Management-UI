@@ -50,7 +50,7 @@ export default function AddTicket() {
 	};
 
 	return (
-		<div className=' bg-white mx-4 shadow-sm w-3/5 h-80 border rounded-xl border-gray-100'>
+		<div className=' bg-white mx-4 shadow-sm w-3/5 h-3/4 border rounded-xl border-gray-100'>
 			<div className='flex border-b p-3 border-gray-100 justify-between'>
 				<h1 className='font-semibold'>Tickets</h1>
 				<button

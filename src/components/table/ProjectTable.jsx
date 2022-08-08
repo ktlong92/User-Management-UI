@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -26,15 +27,17 @@ async function fetcher(url) {
 }
 
 export default function ProjectTable() {
+	
+	// const rowsPerPage = 8;
+	// const page = (1);
+	// ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+	
 	const url = "http://localhost:3000/api/projects";
 	const { data, error } = useSWR(url, fetcher);
 
 	if (error) return <div>failed to load</div>;
 	if (!data) return <div>loading...</div>;
 	const { projects } = data;
-
-	const rowsPerPage = 6;
-	const page = 0;
 
 	return (
 		<>
@@ -47,11 +50,10 @@ export default function ProjectTable() {
 							<StyledTableCell align='justify'>Employees</StyledTableCell>
 						</TableRow>
 					</TableHead>
-					<TableBody>
+					<TableBody className='cursor-pointer'>
 						{projects
-							?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 							.map((data) => (
-								<Project
+								<Project							
 									data={data}
 									key={data.id}
 									showTitle
@@ -62,7 +64,6 @@ export default function ProjectTable() {
 					</TableBody>
 				</Table>
 			</TableContainer>
-			<Pagination variant='outlined' color='error' />
 		</>
 	);
 }

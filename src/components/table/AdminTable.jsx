@@ -6,7 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Pagination from "@mui/material/Pagination";
+
 import Employee from "../employee/Employee";
 import useSWR from "swr";
 
@@ -33,9 +33,6 @@ export default function AdminTable() {
 	if (!data) return <div>loading...</div>;
 	const { employees } = data;
 
-	const rowsPerPage = 10;
-	const page = 0;
-
 	return (
 		<TableContainer container={Paper}>
 			<Table sx={{ minWidth: 650 }} aria-label='simple table'>
@@ -49,7 +46,6 @@ export default function AdminTable() {
 				</TableHead>
 				<TableBody>
 					{employees
-						?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 						.map((data) => (
 							<Employee
 								data={data}
@@ -62,7 +58,6 @@ export default function AdminTable() {
 						))}
 				</TableBody>
 			</Table>
-			<Pagination variant='outlined' color='error' />
 		</TableContainer>
 	);
 }

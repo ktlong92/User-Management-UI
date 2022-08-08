@@ -6,7 +6,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Pagination from "@mui/material/Pagination";
 import Ticket from "../ticket/Ticket";
 import useSWR from "swr";
 
@@ -34,13 +33,10 @@ export default function TicketTable2() {
 	if (!data) return <div>loading...</div>;
 	const { tickets } = data;
 
-	const rowsPerPage = 3;
-	const page = 0;
-
 	return (
 		<>
 			<TableContainer container={Paper}>
-				<Table sx={{ minWidth: 650 }} aria-label='simple table'>
+				<Table sx={{ minWidth: 650, minHeight: 500 }} aria-label='simple table'>
 					<TableHead>
 						<TableRow>
 							<StyledTableCell align='left'>Title</StyledTableCell>
@@ -48,23 +44,20 @@ export default function TicketTable2() {
 							<StyledTableCell align='left'>Assigned Employees</StyledTableCell>
 						</TableRow>
 					</TableHead>
-					<TableBody>
-						{tickets
-							?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-							.map((data) => (
-								<Ticket
-									data={data}
-									key={data.id}
-									sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-									showTitle
-									showDescription
-									showEmployees
-								/>
-							))}
+					<TableBody className='cursor-pointer'>
+						{tickets?.map((data) => (
+							<Ticket
+								data={data}
+								key={data.id}
+								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+								showTitle
+								showDescription
+								showEmployees
+							/>
+						))}
 					</TableBody>
 				</Table>
 			</TableContainer>
-			<Pagination variant='outlined' color='error' />
 		</>
 	);
 }

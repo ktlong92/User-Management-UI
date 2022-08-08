@@ -12,18 +12,18 @@ export default function handler(req, res) {
 		tickets: [
 			{
 				id: "1",
-				title: "Test",
+				title: "Test1",
 				description:
 					"Test description that is super long and takes up a lot of space",
 				employees: "Naruto Uzumaki",
 				type: "FEATURE",
 				status: "OPEN",
 				priority: "IMMEDIATE",
-				project: "Project 1",
+				project: "1",
 			},
 			{
 				id: "2",
-				title: "Test1",
+				title: "Test2",
 				description:
 					"Test description that is super long and takes up a lot of space",
 				employees: "Naruto Uzumaki, Sasuke Uchiha",
@@ -34,7 +34,7 @@ export default function handler(req, res) {
 			},
 			{
 				id: "3",
-				title: "Test2",
+				title: "Test3",
 				description:
 					"Test description that is super long and takes up a lot of space",
 				employees: "Naruto Uzumaki, Sasuke Uchiha, Sakura Haruno",
@@ -45,18 +45,18 @@ export default function handler(req, res) {
 			},
 			{
 				id: "4",
-				title: "Test3",
+				title: "Test4",
 				description:
 					"Test description that is super long and takes up a lot of space",
 				employees: "Naruto Uzumaki, Sasuke Uchiha, Sakura Haruno",
 				type: "BUG",
 				status: "RESOLVED",
 				priority: "LOW",
-				project: "Project 1",
+				project: "1",
 			},
 			{
 				id: "5",
-				title: "Test4",
+				title: "Test5",
 				description:
 					"Test description that is super long and takes up a lot of space",
 				employees:
@@ -68,19 +68,19 @@ export default function handler(req, res) {
 			},
 			{
 				id: "6",
-				title: "Test5",
+				title: "Test6",
 				description:
 					"Test description that is super long and takes up a lot of space",
 				employees:
-					"Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
+					"Kakashi Hatake, Naruto Uzumaki, Sasuke Uchiha, Sakura Haruno",
 				type: "ERROR",
 				status: "RESOLVED",
 				priority: "LOW",
-				project: "Project 5",
+				project: "Project 3",
 			},
 			{
 				id: "7",
-				title: "Test6",
+				title: "Test7",
 				description:
 					"Test description that is super long and takes up a lot of space",
 				employees:
@@ -92,7 +92,7 @@ export default function handler(req, res) {
 			},
 			{
 				id: "8",
-				title: "Test7",
+				title: "Test8",
 				description:
 					"Test description that is super long and takes up a lot of space",
 				employees:
@@ -104,7 +104,7 @@ export default function handler(req, res) {
 			},
 			{
 				id: "9",
-				title: "Test8",
+				title: "Test9",
 				description:
 					"Test description that is super long and takes up a lot of space",
 				employees:
@@ -116,7 +116,19 @@ export default function handler(req, res) {
 			},
 			{
 				id: "10",
-				title: "Test9",
+				title: "Test10",
+				description:
+					"Test description that is super long and takes up a lot of space",
+				employees:
+					"Asuma Sarutobi, Shikamaru Nara, Ino Yamanaka, Choji Akimichi",
+				type: "ERROR",
+				status: "RESOLVED",
+				priority: "LOW",
+				project: "Project 4",
+			},
+			{
+				id: "11",
+				title: "Test11",
 				description:
 					"Test description that is super long and takes up a lot of space",
 				employees:
@@ -127,8 +139,8 @@ export default function handler(req, res) {
 				project: "Project 5",
 			},
 			{
-				id: "11",
-				title: "Test10",
+				id: "12",
+				title: "Test12",
 				description:
 					"Test description that is super long and takes up a lot of space",
 				employees:
