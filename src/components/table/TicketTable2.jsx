@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Ticket from "../ticket/Ticket";
 import useSWR from "swr";
+import Link from "next/Link";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -45,17 +46,23 @@ export default function TicketTable2() {
 						</TableRow>
 					</TableHead>
 					<TableBody className='cursor-pointer'>
-						{tickets?.map((data) => (
-							<Ticket
-								data={data}
-								key={data.id}
-								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-								showTitle
-								showDescription
-								showEmployees
-							/>
-						))}
+						<StyledTableCell align='left'>Test1</StyledTableCell>
+						<StyledTableCell align='left'>
+							Test description that is super long and takes up a lot of space
+						</StyledTableCell>
+						<StyledTableCell align='left'>Naruto Uzumaki</StyledTableCell>
 					</TableBody>
+					<Link href='/ticket/4'>
+						<TableBody className='cursor-pointer'>
+							<StyledTableCell align='left'>Test4</StyledTableCell>
+							<StyledTableCell align='left'>
+								Test description that is super long and takes up a lot of space
+							</StyledTableCell>
+							<StyledTableCell align='left'>
+								Naruto Uzumaki, Sasuke Uchiha, Sakura Haruno
+							</StyledTableCell>
+						</TableBody>
+					</Link>
 				</Table>
 			</TableContainer>
 		</>

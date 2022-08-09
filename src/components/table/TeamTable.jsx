@@ -6,6 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Pagination from "@mui/material/Pagination";
 import Employee from "../employee/Employee";
 import useSWR from "swr";
 
@@ -15,7 +16,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 		color: theme.palette.common.white,
 	},
 	[`&.${tableCellClasses.body}`]: {
-		fontSize: 14,
+		fontSize: 12,
 	},
 }));
 
@@ -32,10 +33,13 @@ export default function TeamTable() {
 	if (!data) return <div>loading...</div>;
 	const { employees } = data;
 
+	const rowsPerPage = 3;
+	const page = 0;
+
 	return (
 		<>
 			<TableContainer container={Paper}>
-				<Table sx={{ minWidth: 650, minHeight: 500 }} aria-label='simple table'>
+				<Table sx={{ minWidth: 650 }} aria-label='simple table'>
 					<TableHead>
 						<TableRow>
 							<StyledTableCell align='left'>Name</StyledTableCell>
@@ -44,15 +48,32 @@ export default function TeamTable() {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{employees?.map((data) => (
-							<Employee
-								data={data}
-								key={data.id}
-								showName
-								showEmail
-								showPhoneNumber
-							/>
-						))}
+						<StyledTableCell align='left'>Kakashi Hatake</StyledTableCell>
+						<StyledTableCell align='left'>(520) 064 7840</StyledTableCell>
+						<StyledTableCell align='left'>
+							KakashiHatake@test.com
+						</StyledTableCell>
+					</TableBody>
+					<TableBody>
+						<StyledTableCell align='left'>Naruto Uzumaki</StyledTableCell>
+						<StyledTableCell align='left'>(520) 299 0875</StyledTableCell>
+						<StyledTableCell align='left'>
+							NarutoUzumaki@test.com
+						</StyledTableCell>
+					</TableBody>
+					<TableBody>
+						<StyledTableCell align='left'>Sasuke Uchiha</StyledTableCell>
+						<StyledTableCell align='left'>(520) 618 0059</StyledTableCell>
+						<StyledTableCell align='left'>
+							SasukeUchiha@test.com
+						</StyledTableCell>
+					</TableBody>
+					<TableBody>
+						<StyledTableCell align='left'>Sakura Haruno</StyledTableCell>
+						<StyledTableCell align='left'>(520) 102 4080</StyledTableCell>
+						<StyledTableCell align='left'>
+							SakuraHaruno@test.com
+						</StyledTableCell>
 					</TableBody>
 				</Table>
 			</TableContainer>

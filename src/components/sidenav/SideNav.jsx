@@ -59,7 +59,7 @@ const SideNav = () => {
 					/>
 				</div> */}
 				<ul className='pt-2 mt-6'>
-					<Link href='/'>
+					<Link href='/Home'>
 						<li className='text-white text-lg flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md'>
 							<MdDashboard />
 							<div

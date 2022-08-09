@@ -1,6 +1,6 @@
 import AddTeam from "../../components/modal/AddTeam";
 import AddTicket from "../../components/modal/AddTicket";
-import SelectedTicketInfo from "../../components/table/SelectedTicketInfo";
+// import SelectedTicketInfo from "../../components/table/SelectedTicketInfo";
 import { useRouter } from "next/router";
 
 export default function ProjectDetailPage() {
