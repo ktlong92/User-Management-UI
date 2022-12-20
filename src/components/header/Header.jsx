@@ -11,7 +11,7 @@ const Header = () => {
 				<h1 className='text-white font-semibold'>Rizer Management</h1>
 			</div>
 			<div className='flex space-x-4 mr-3'>
-				<Link href='/'>
+				<Link href='/auth/Login'>
 					<a className='text-white font-semibold cursor-pointer'>Logout</a>
 				</Link>
 			</div>

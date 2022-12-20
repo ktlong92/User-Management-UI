@@ -1,3 +1,4 @@
+import { React, useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -5,11 +6,9 @@ import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import Pagination from "@mui/material/Pagination";
 import Paper from "@mui/material/Paper";
 import Ticket from "../ticket/Ticket";
-import useSWR from "swr";
-import Link from "next/Link";
-
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	[`&.${tableCellClasses.head}`]: {
@@ -21,50 +20,89 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	},
 }));
 
-async function fetcher(url) {
-	const res = await fetch(url);
-	return res.json();
-}
+export default function TicketTable1({ ticket }) {
+	const TICKET_API_BASE_URL = "http://localhost:8080/api/v1/tickets";
 
-export default function TicketTable2() {
-	const url = "http://localhost:3000/api/tickets";
-	const { data, error } = useSWR(url, fetcher);
+	const rowsPerPage = 3;
 
-	if (error) return <div>failed to load</div>;
-	if (!data) return <div>loading...</div>;
-	const { tickets } = data;
+	const [tickets, setTickets] = useState();
+	const [loading, setLoading] = useState(true);
+	const [page, setPage] = useState(0);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			setLoading(true);
+			try {
+				const response = await fetch(TICKET_API_BASE_URL, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+					},
+				});
+				const tickets = await response.json();
+				setTickets(tickets);
+			} catch (error) {
+				console.log(error);
+			}
+			setLoading(false);
+		};
+		fetchData();
+	}, [ticket]);
+
+	const handlePageButtonClick = (event) => {
+		onPageChange(event, page);
+	};
+
+	const handleBackButtonClick = (event) => {
+		onPageChange(event, page - 1);
+	};
+
+	const handleNextButtonClick = (event) => {
+		onPageChange(event, page + 1);
+	};
 
 	return (
-		<>
-			<TableContainer container={Paper}>
-				<Table sx={{ minWidth: 650, minHeight: 500 }} aria-label='simple table'>
-					<TableHead>
-						<TableRow>
-							<StyledTableCell align='left'>Title</StyledTableCell>
-							<StyledTableCell align='left'>Description</StyledTableCell>
-							<StyledTableCell align='left'>Assigned Employees</StyledTableCell>
-						</TableRow>
-					</TableHead>
-					<TableBody className='cursor-pointer'>
-						<StyledTableCell align='left'>Test1</StyledTableCell>
-						<StyledTableCell align='left'>
-							Test description that is super long and takes up a lot of space
-						</StyledTableCell>
-						<StyledTableCell align='left'>Naruto Uzumaki</StyledTableCell>
-					</TableBody>
-					<Link href='/ticket/4'>
-						<TableBody className='cursor-pointer'>
-							<StyledTableCell align='left'>Test4</StyledTableCell>
-							<StyledTableCell align='left'>
-								Test description that is super long and takes up a lot of space
-							</StyledTableCell>
-							<StyledTableCell align='left'>
-								Naruto Uzumaki, Sasuke Uchiha, Sakura Haruno
-							</StyledTableCell>
-						</TableBody>
-					</Link>
-				</Table>
-			</TableContainer>
-		</>
+		<TableContainer container={Paper}>
+			<Table sx={{ minWidth: 650 }} aria-label='simple table'>
+				<TableHead>
+					<TableRow>
+						<StyledTableCell align='left'>Title</StyledTableCell>
+						<StyledTableCell align='left'>Description</StyledTableCell>
+						<StyledTableCell align='left'>Assigned Employees</StyledTableCell>
+					</TableRow>
+				</TableHead>
+				<TableBody>
+					{tickets
+						?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+						.map((ticket) => (
+							<Ticket
+								ticket={ticket}
+								key={ticket.id}
+								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+								<StyledTableCell component='th' scope='row'>
+									{ticket.title}
+								</StyledTableCell>
+								<StyledTableCell align='right'>
+									{ticket.description}
+								</StyledTableCell>
+								<StyledTableCell align='left'>
+									{ticket.employees}
+								</StyledTableCell>
+							</Ticket>
+						))}
+				</TableBody>
+				<Pagination
+					// count={tickets.length / rowsPerPage}
+					variant='outlined'
+					color='error'
+					onPageChange={[
+						handlePageButtonClick,
+						handleBackButtonClick,
+						handleNextButtonClick,
+					]}
+					defaultPage={0}
+				/>
+			</Table>
+		</TableContainer>
 	);
 }

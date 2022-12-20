@@ -1,9 +1,10 @@
-// import { Avatar } from "@mui/material";
+import { Avatar } from "@mui/material";
 import { React, useState } from "react";
 import { BsFillXDiamondFill, BsSearch } from "react-icons/bs";
 import Link from "next/Link";
 
 import {
+	MdAddchart,
 	MdAssignmentInd,
 	MdDashboard,
 	MdAssessment,
@@ -24,21 +25,12 @@ const SideNav = () => {
 					onClick={() => setOpen(!open)}
 				/>
 				<div className='inline-flex'>
-					{/* <Avatar /> */}
+					<Avatar />
 					<h1
 						className={`text-white text-2lg ml-4 font-medium origin-left duration-300 ${
 							!open && "scale-0"
 						}`}>
-						Welcome,
-					</h1>
-				</div>
-				<div className='inline-flex'>
-					{/* <Avatar /> */}
-					<h1
-						className={`text-white text-2lg ml-4 font-medium origin-left duration-300 ${
-							!open && "scale-0"
-						}`}>
-						Hiruzen
+						User
 					</h1>
 				</div>
 				{/* <div
@@ -59,7 +51,7 @@ const SideNav = () => {
 					/>
 				</div> */}
 				<ul className='pt-2 mt-6'>
-					<Link href='/Home'>
+					<Link href='/dashboard'>
 						<li className='text-white text-lg flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md'>
 							<MdDashboard />
 							<div
@@ -70,18 +62,18 @@ const SideNav = () => {
 							</div>
 						</li>
 					</Link>
-					<Link href='/company'>
+					<Link href='/employee'>
 						<li className='text-white text-lg flex items-center gap-x-4 cursor-pointer p-2 mt-4 hover:bg-light-white rounded-md'>
 							<MdAssignmentInd />
 							<div
 								className={`text-base font-medium flex-1 duration-200 ${
 									!open && "hidden"
 								}`}>
-								Company
+								Admin
 							</div>
 						</li>
 					</Link>
-					{/* <Link href='/project'>
+					<Link href='/project'>
 						<li className='text-white text-lg flex items-center gap-x-4 cursor-pointer p-2 mt-4 hover:bg-light-white rounded-md'>
 							<MdAssessment />
 							<div
@@ -91,8 +83,8 @@ const SideNav = () => {
 								Projects
 							</div>
 						</li>
-					</Link> */}
-					{/* <Link href='/ticket'>
+					</Link>
+					<Link href='/ticket'>
 						<li className='text-white text-lg flex items-center gap-x-4 cursor-pointer p-2 mt-4 hover:bg-light-white rounded-md'>
 							<MdReceipt />
 							<div
@@ -102,7 +94,7 @@ const SideNav = () => {
 								Tickets
 							</div>
 						</li>
-					</Link> */}
+					</Link>
 				</ul>
 			</div>
 		</div>

@@ -2,7 +2,7 @@ import React from "react";
 
 const SignUp = () => {
 	
-	const saveUser = () => {};
+	const saveUser = () => { };
 	
 	return (
 		<div className='flex flex-col items-center justify-center min-h-screen py-2 bg-gray-800'>
@@ -18,16 +18,8 @@ const SignUp = () => {
 							<div className='bg-gray-100 w-2/3 p-2 flex items-center mb-3'>
 								<input
 									type='text'
-									label='First Name'
-									placeholder='First Name'
-									className='bg-gray-100 outline-none text-sm flex-1'
-								/>
-							</div>
-							<div className='bg-gray-100 w-2/3 p-2 flex items-center mb-3'>
-								<input
-									type='text'
-									label='Last Name'
-									placeholder='Last Name'
+									label='Name'
+									placeholder='Name'
 									className='bg-gray-100 outline-none text-sm flex-1'
 								/>
 							</div>
@@ -42,14 +34,6 @@ const SignUp = () => {
 							<div className='bg-gray-100 w-2/3 p-2 flex items-center mb-3'>
 								<input
 									type='text'
-									label='Phone Number'
-									placeholder='Phone Number'
-									className='bg-gray-100 outline-none text-sm flex-1'
-								/>
-							</div>
-							<div className='bg-gray-100 w-2/3 p-2 flex items-center mb-3'>
-								<input
-									type='text'
 									label='Username'
 									placeholder='Username'
 									className='bg-gray-100 outline-none text-sm flex-1'
@@ -58,8 +42,16 @@ const SignUp = () => {
 							<div className='bg-gray-100 w-2/3 p-2 flex items-center mb-3'>
 								<input
 									type='password'
-									label='Password'
+									label='password'
 									placeholder='Password'
+									className='bg-gray-100 outline-none text-sm flex-1'
+								/>
+							</div>
+							<div className='bg-gray-100 w-2/3 p-2 flex items-center mb-3'>
+								<input
+									type='password'
+									label='password'
+									placeholder='Confirm Password'
 									className='bg-gray-100 outline-none text-sm flex-1'
 								/>
 							</div>

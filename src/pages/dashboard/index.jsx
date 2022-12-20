@@ -1,15 +1,13 @@
 import React, { Fragment, useState } from "react";
 import { Transition, Dialog } from "@headlessui/react";
-import ProjectTable from "../components/table/ProjectTable";
-import Project from "../components/project/Project";
+import CardSm from "../../components/card/CardSm";
+import ProjectTable from "../../components/table/ProjectTable";
 
 const Dashboard = () => {
+	const PROJECT_API_BASE_URL = "http://localhost:8080/api/v1/projects";
+	
 	const [isOpen, setIsOpen] = useState(false);
-	const [project, setProject] = useState({
-		title: "",
-		description: "",
-		employees: "",
-	});
+	const [responseProject, setResponseProject] = useState();
 
 	function closeModal() {
 		setIsOpen(false);
@@ -19,6 +17,13 @@ const Dashboard = () => {
 		setIsOpen(true);
 	}
 
+	const [project, setProject] = useState({
+		id: "",
+		name: "",
+		description: "",
+		employees: "",
+	});
+
 	const handleChange = (event) => {
 		const value = event.target.value;
 		setProject({ ...project, [event.target.name]: value });
@@ -26,19 +31,26 @@ const Dashboard = () => {
 
 	const saveProject = async (e) => {
 		e.preventDefault();
-		const response = await fetch("http://localhost:3000/api/projects", {
+		const response = await fetch(PROJECT_API_BASE_URL, {
 			method: "POST",
-			headers: { "Content-Type": "application/json" },
+			headers: {
+				"Content-Type": "application/json",
+			},
 			body: JSON.stringify(project),
 		});
+		if (!response.ok) {
+			throw new Error("Something went wrong");
+		}
 		const _project = await response.json();
+		setResponseProject(_project);
 		reset(e);
 	};
 
 	const reset = (e) => {
 		e.preventDefault();
 		setProject({
-			title: "",
+			id: "",
+			name: "",
 			description: "",
 			employees: "",
 		});
@@ -51,7 +63,7 @@ const Dashboard = () => {
 				<h1 className='font-bold text-2xl'>Dashboard</h1>
 			</div>
 			<div className='flex ml-12 mr-4 mt-6'>
-				<div className=' bg-white ml-2 shadow-sm w-full h-5/6 border rounded-xl border-gray-100'>
+				<div className=' bg-white ml-2 shadow-sm w-full h-80 border rounded-xl border-gray-100'>
 					<div className='flex border-b p-3 border-gray-100 justify-between'>
 						<h1 className='font-semibold'>PROJECTS</h1>
 						<button
@@ -83,12 +95,12 @@ const Dashboard = () => {
 												<div className='py-2'>
 													<div className='h-14 my-4'>
 														<label className='block text-gray-600 text-sm font-normal'>
-															Title
+															Name
 														</label>
 														<input
 															type='text'
-															name='title'
-															value={project.title}
+															name='projectName'
+															value={project.projectName}
 															onChange={(e) => handleChange(e)}
 															className='h-10 w-96 border mt-2 px-2 py-2'></input>
 													</div>
@@ -139,11 +151,11 @@ const Dashboard = () => {
 					</div>
 				</div>
 			</div>
-			{/* <div className='flex mx-12 p-4 items-center justify-between' >
+			<div className='flex mx-12 p-4 items-center justify-between'>
 				<CardSm Title='Tickets by Priority' />
 				<CardSm Title='Tickets by Status' />
 				<CardSm Title='Tickets by Type' />
-			</div> */}
+			</div>
 		</div>
 	);
 };

@@ -1,70 +1,32 @@
 import React from "react";
-import Link from "next/Link";
 
-const Ticket = ({
-	data,
-	showTitle,
-	showDescription,
-	showEmployees,
-	showPriority,
-	showStatus,
-	showType,
-	showProject,
-}) => {
+const Ticket = ({ ticket }) => {
+
 	return (
-		<tr key={data.id}>
-			{showTitle && (
-				<td className='text-justify py-4 px-6 whitespace-nowrap'>
-					<Link href={`/ticket/${data.id}`} key={data.id}>
-						<div className='text-sm text-gray-600'>{data.title}</div>
-					</Link>
-				</td>
-			)}
-			{showDescription && (
-				<td className='text-justify py-4 px-6 whitespace-nowrap'>
-					<Link href={`/ticket/${data.id}`} key={data.id}>
-						<div className='text-sm text-gray-600'>{data.description}</div>
-					</Link>
-				</td>
-			)}
-			{showEmployees && (
-				<td className='text-justify py-4 px-6 whitespace-nowrap'>
-					<Link href={`/ticket/${data.id}`} key={data.id}>
-						<div className='text-sm text-gray-600'>{data.employees}</div>
-					</Link>
-				</td>
-			)}
-			{showPriority && (
-				<td className='text-justify py-4 px-6 whitespace-nowrap'>
-					<Link href={`/ticket/${data.id}`} key={data.id}>
-						<div className='text-sm text-gray-600'>{data.priority}</div>
-					</Link>
-				</td>
-			)}
-			{showStatus && (
-				<td className='text-justify py-4 px-6 whitespace-nowrap'>
-					<Link href={`/ticket/${data.id}`} key={data.id}>
-						<div className='text-sm text-gray-600'>{data.status}</div>
-					</Link>
-				</td>
-			)}
-			{showType && (
-				<td className='text-justify py-4 px-6 whitespace-nowrap'>
-					<Link href={`/ticket/${data.id}`} key={data.id}>
-						<div className='text-sm text-gray-600'>{data.type}</div>
-					</Link>
-				</td>
-			)}
-			{showProject && (
-				<td className='text-justify py-4 px-6 whitespace-nowrap'>
-					<Link href={`/ticket/${data.id}`} key={data.id}>
-						<div className='text-sm text-gray-600'>{data.project}</div>
-					</Link>
-				</td>
-			)}
+		<tr key={ticket.id}>
+			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+				<div className='text-sm text-gray-600'>{ticket.title}</div>
+			</td>
+			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+				<div className='text-sm text-gray-600'>{ticket.description}</div>
+			</td>
+			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+				<div className='text-sm text-gray-600'>{ticket.employees}</div>
+			</td>
+			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+				<div className='text-sm text-gray-600'>{ticket.estimatedTime}</div>
+			</td>
+			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+				<div className='text-sm text-gray-600'>{ticket.priority}</div>
+			</td>
+			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+				<div className='text-sm text-gray-600'>{ticket.status}</div>
+			</td>
+			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+				<div className='text-sm text-gray-600'>{ticket.type}</div>
+			</td>
 		</tr>
 	);
 };
 
 export default Ticket;
-

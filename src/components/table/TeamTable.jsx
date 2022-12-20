@@ -1,3 +1,4 @@
+import { React, useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -5,10 +6,9 @@ import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 import Pagination from "@mui/material/Pagination";
+import Paper from "@mui/material/Paper";
 import Employee from "../employee/Employee";
-import useSWR from "swr";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	[`&.${tableCellClasses.head}`]: {
@@ -16,67 +16,93 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 		color: theme.palette.common.white,
 	},
 	[`&.${tableCellClasses.body}`]: {
-		fontSize: 12,
+		fontSize: 14,
 	},
 }));
 
-async function fetcher(url) {
-	const res = await fetch(url);
-	return res.json();
-}
-
-export default function TeamTable() {
-	const url = "http://localhost:3000/api/employees";
-	const { data, error } = useSWR(url, fetcher);
-
-	if (error) return <div>failed to load</div>;
-	if (!data) return <div>loading...</div>;
-	const { employees } = data;
+export default function TeamTable({ employee }) {
+	const EMPLOYEE_API_BASE_URL = "http://localhost:8080/api/v1/employees";
 
 	const rowsPerPage = 3;
-	const page = 0;
+
+	const [employees, setEmployees] = useState();
+	const [loading, setLoading] = useState(true);
+	const [page, setPage] = useState(0);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			setLoading(true);
+			try {
+				const response = await fetch(EMPLOYEE_API_BASE_URL, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+					},
+				});
+				const employees = await response.json();
+				setEmployees(employees);
+			} catch (error) {
+				console.log(error);
+			}
+			setLoading(false);
+		};
+		fetchData();
+	}, [employee]);
+
+	const handlePageButtonClick = (event) => {
+		onPageChange(event, page);
+	};
+
+	const handleBackButtonClick = (event) => {
+		onPageChange(event, page - 1);
+	};
+
+	const handleNextButtonClick = (event) => {
+		onPageChange(event, page + 1);
+	};
 
 	return (
-		<>
-			<TableContainer container={Paper}>
-				<Table sx={{ minWidth: 650 }} aria-label='simple table'>
-					<TableHead>
-						<TableRow>
-							<StyledTableCell align='left'>Name</StyledTableCell>
-							<StyledTableCell align='left'>Phone Number</StyledTableCell>
-							<StyledTableCell align='left'>Email</StyledTableCell>
-						</TableRow>
-					</TableHead>
-					<TableBody>
-						<StyledTableCell align='left'>Kakashi Hatake</StyledTableCell>
-						<StyledTableCell align='left'>(520) 064 7840</StyledTableCell>
-						<StyledTableCell align='left'>
-							KakashiHatake@test.com
-						</StyledTableCell>
-					</TableBody>
-					<TableBody>
-						<StyledTableCell align='left'>Naruto Uzumaki</StyledTableCell>
-						<StyledTableCell align='left'>(520) 299 0875</StyledTableCell>
-						<StyledTableCell align='left'>
-							NarutoUzumaki@test.com
-						</StyledTableCell>
-					</TableBody>
-					<TableBody>
-						<StyledTableCell align='left'>Sasuke Uchiha</StyledTableCell>
-						<StyledTableCell align='left'>(520) 618 0059</StyledTableCell>
-						<StyledTableCell align='left'>
-							SasukeUchiha@test.com
-						</StyledTableCell>
-					</TableBody>
-					<TableBody>
-						<StyledTableCell align='left'>Sakura Haruno</StyledTableCell>
-						<StyledTableCell align='left'>(520) 102 4080</StyledTableCell>
-						<StyledTableCell align='left'>
-							SakuraHaruno@test.com
-						</StyledTableCell>
-					</TableBody>
-				</Table>
-			</TableContainer>
-		</>
+		<TableContainer container={Paper}>
+			<Table sx={{ minWidth: 650 }} aria-label='simple table'>
+				<TableHead>
+					<TableRow>
+						<StyledTableCell align='left'>Name</StyledTableCell>
+						<StyledTableCell align='left'>Email</StyledTableCell>
+						<StyledTableCell align='center'>Phone Number</StyledTableCell>
+					</TableRow>
+				</TableHead>
+				<TableBody>
+					{employees
+						?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+						.map((employee) => (
+							<Employee
+								employee={employee}
+								key={employee.id}
+								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+								<StyledTableCell component='th' scope='row'>
+									{employee.name}
+								</StyledTableCell>
+								<StyledTableCell align='right'>
+									{employee.email}
+								</StyledTableCell>
+								<StyledTableCell align='left'>
+									{employee.phoneNumber}
+								</StyledTableCell>
+							</Employee>
+						))}
+				</TableBody>
+				<Pagination
+					// count={employees.length / rowsPerPage}
+					variant='outlined'
+					color='error'
+					onPageChange={[
+						handlePageButtonClick,
+						handleBackButtonClick,
+						handleNextButtonClick,
+					]}
+					defaultPage={0}
+				/>
+			</Table>
+		</TableContainer>
 	);
 }
