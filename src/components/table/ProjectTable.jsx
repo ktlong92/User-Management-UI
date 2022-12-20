@@ -61,45 +61,51 @@ export default function ProjectTable({ project }) {
 		onPageChange(event, page + 1);
 	};
 
+	console.log(projects)
+
 	return (
-		<TableContainer container={Paper}>
-			<Table sx={{ minWidth: 650 }} aria-label='simple table'>
-				<TableHead>
-					<TableRow>
-						<StyledTableCell align='justify'>Name</StyledTableCell>
-						<StyledTableCell align='justify'>Description</StyledTableCell>
-						<StyledTableCell align='justify'>Employees</StyledTableCell>
-					</TableRow>
-				</TableHead>
-				<TableBody>
-					{projects
-						?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-						.map((project) => (
-							<Project project={project} key={project.id}>
-								<StyledTableCell component='th' scope='row'>
-									{project.name}
-								</StyledTableCell>
-								<StyledTableCell align='justify'>
-									{project.description}
-								</StyledTableCell>
-								<StyledTableCell align='left'>
-									{project.employees}
-								</StyledTableCell>
-							</Project>
-						))}
-				</TableBody>
-				<Pagination
-					// count={projects.length / rowsPerPage}
-					variant='outlined'
-					color='error'
-					onPageChange={[
-						handlePageButtonClick,
-						handleBackButtonClick,
-						handleNextButtonClick,
-					]}
-					defaultPage={0}
-				/>
-			</Table>
-		</TableContainer>
+		<div>
+			<TableContainer container={Paper}>
+				<Table sx={{ minWidth: 650 }} aria-label='simple table'>
+					<TableHead>
+						<TableRow>
+							<StyledTableCell align='justify'>Title</StyledTableCell>
+							<StyledTableCell align='justify'>Description</StyledTableCell>
+							<StyledTableCell align='justify'>Employees</StyledTableCell>
+						</TableRow>
+					</TableHead>
+					<TableBody>
+						{projects
+							?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+							.map((project) => (
+								<Project project={project} key={project.id}>
+									<StyledTableCell component='th' scope='row'>
+										{project.title}
+									</StyledTableCell>
+									<StyledTableCell align='justify'>
+										{project.description}
+									</StyledTableCell>
+									<StyledTableCell align='justify'>
+										{project.employees}
+									</StyledTableCell>
+									<StyledTableCell align='justify'>
+									</StyledTableCell>
+								</Project>
+							))}
+					</TableBody>
+				</Table>
+			</TableContainer>
+			<Pagination
+				count={Math.ceil(projects?.length / rowsPerPage)}
+				variant='outlined'
+				color='error'
+				onPageChange={[
+					handlePageButtonClick,
+					handleBackButtonClick,
+					handleNextButtonClick,
+				]}
+				defaultPage={0}
+			/>
+		</div>
 	);
 }

@@ -5,7 +5,7 @@ const Project = ({ project }) => {
 	return (
 		<tr key={project.id}>
 			<td className='text-justify py-4 px-6 whitespace-nowrap'>
-				<div className='text-sm text-gray-600'>{project.name}</div>
+				<div className='text-sm text-gray-600'>{project.title}</div>
 			</td>
 			<td className='text-justify py-4 px-6 whitespace-nowrap'>
 				<div className='text-sm text-gray-600'>{project.description}</div>
