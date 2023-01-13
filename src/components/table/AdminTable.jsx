@@ -76,14 +76,12 @@ export default function AdminTable({ employee }) {
 					{employees
 						?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 						.map((employee) => (
-							<Employees
-								employee={employee}
-								key={employee.id}
-								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+							<tr
+							key={employee.id}>
 								<StyledTableCell component='th' scope='row'>
-									{employee.firstName}
+									{employee.firstName} {employee.lastName}
 								</StyledTableCell>
-								<StyledTableCell align='right'>
+								<StyledTableCell align='left'>
 									{employee.phoneNumber}
 								</StyledTableCell>
 								<StyledTableCell align='left'>
@@ -92,7 +90,7 @@ export default function AdminTable({ employee }) {
 								<StyledTableCell align='left'>
 									{employee.role}
 								</StyledTableCell>
-							</Employees>
+							</tr>
 						))}
 				</TableBody>
 				<Pagination

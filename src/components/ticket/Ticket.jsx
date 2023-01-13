@@ -2,6 +2,8 @@ import React from "react";
 
 const Ticket = ({ ticket }) => {
 
+	console.log(ticket);
+	
 	return (
 		<tr key={ticket.id}>
 			{ticket.title && <td className='text-justify py-4 px-6 whitespace-nowrap'>

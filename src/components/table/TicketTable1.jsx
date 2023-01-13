@@ -77,10 +77,8 @@ export default function TicketTable1({ ticket }) {
 					{tickets
 						?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 						.map((ticket) => (
-							<Ticket
-								ticket={ticket}
-								key={ticket.id}
-								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+							<tr
+							key={ticket.id}>
 								<StyledTableCell component='th' scope='row'>
 									{ticket.title}
 								</StyledTableCell>
@@ -96,7 +94,7 @@ export default function TicketTable1({ ticket }) {
 								<StyledTableCell align='left'>
 									{ticket.type}
 								</StyledTableCell>
-							</Ticket>
+							</tr>
 						))}
 				</TableBody>
 				<Pagination

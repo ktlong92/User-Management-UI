@@ -67,28 +67,26 @@ export default function TeamTable({ employee }) {
 				<TableHead>
 					<TableRow>
 						<StyledTableCell align='left'>Name</StyledTableCell>
+						<StyledTableCell align='left'>Phone Number</StyledTableCell>
 						<StyledTableCell align='left'>Email</StyledTableCell>
-						<StyledTableCell align='center'>Phone Number</StyledTableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
 					{employees
 						?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 						.map((employee) => (
-							<Employee
-								employee={employee}
-								key={employee.id}
-								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+							<tr
+							key={employee.id}>
 								<StyledTableCell component='th' scope='row'>
-									{employee.name}
-								</StyledTableCell>
-								<StyledTableCell align='right'>
-									{employee.email}
+									{employee.firstName} {employee.lastName}
 								</StyledTableCell>
 								<StyledTableCell align='left'>
 									{employee.phoneNumber}
 								</StyledTableCell>
-							</Employee>
+								<StyledTableCell align='left'>
+									{employee.email}
+								</StyledTableCell>
+							</tr>
 						))}
 				</TableBody>
 				<Pagination

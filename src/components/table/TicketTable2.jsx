@@ -20,7 +20,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 	},
 }));
 
-export default function TicketTable1({ ticket }) {
+export default function TicketTable2({ ticket }) {
 	const TICKET_API_BASE_URL = "http://localhost:8080/api/v1/tickets";
 
 	const rowsPerPage = 3;
@@ -75,20 +75,18 @@ export default function TicketTable1({ ticket }) {
 					{tickets
 						?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 						.map((ticket) => (
-							<Ticket
-								ticket={ticket}
-								key={ticket.id}
-								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+							<tr
+							key={ticket.id}>
 								<StyledTableCell component='th' scope='row'>
 									{ticket.title}
 								</StyledTableCell>
-								<StyledTableCell align='right'>
+								<StyledTableCell align='left'>
 									{ticket.description}
 								</StyledTableCell>
 								<StyledTableCell align='left'>
-									{ticket.employee}
+									{ticket.employees}
 								</StyledTableCell>
-							</Ticket>
+							</tr>
 						))}
 				</TableBody>
 				<Pagination
