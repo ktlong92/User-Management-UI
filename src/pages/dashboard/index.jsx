@@ -2,6 +2,9 @@ import React, { Fragment, useState } from "react";
 import { Transition, Dialog } from "@headlessui/react";
 import CardSm from "../../components/card/CardSm";
 import ProjectTable from "../../components/table/ProjectTable";
+import Priority from "../../components/chart/Priority";
+import Status from "../../components/chart/Status";
+import Type from "../../components/chart/Type";
 
 const Dashboard = () => {
 	const PROJECT_API_BASE_URL = "http://localhost:8080/api/v1/projects";
@@ -152,9 +155,9 @@ const Dashboard = () => {
 				</div>
 			</div>
 			<div className='flex mx-12 p-4 items-center justify-between'>
-				<CardSm Title='Tickets by Priority' />
-				<CardSm Title='Tickets by Status' />
-				<CardSm Title='Tickets by Type' />
+				<CardSm Title='Tickets by Priority' Chart={<Priority />} />
+				<CardSm Title='Tickets by Status' Chart={<Status/>} />
+				<CardSm Title='Tickets by Type' Chart={<Type/>} />
 			</div>
 		</div>
 	);

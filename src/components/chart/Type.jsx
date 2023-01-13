@@ -34,7 +34,7 @@ const Type = () => {
 		labels: ["Feature", "Bug", "Rework"],
 		datasets: [
 			{
-				data: chart?.tickets.map((x) => x.type),
+				data: chart?.tickets?.map((x) => x.type) || [4,2,7],
 				backgroundColor: [
 					"rgba(0, 0, 255, 0.2)",
 					"rgba(255, 206, 86, 0.2)",
@@ -61,7 +61,7 @@ const Type = () => {
 
 	return (
 		<div>
-			<Doughnut data={data} height={400} options={options} />
+			<Doughnut data={data} options={options} />
 		</div>
 	);
 };

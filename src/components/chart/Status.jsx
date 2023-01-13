@@ -34,7 +34,7 @@ const Status = () => {
 		labels: ["Open", "In-Progress", "Resolved"],
 		datasets: [
 			{
-				data: chart?.tickets.map((x) => x.status),
+				data: chart?.tickets?.map((x) => x.status) || [4,3,7],
 				backgroundColor: [
 					"rgba(0, 0, 204, 0.2)",
 					"rgba(0, 204, 204, 0.2)",
@@ -61,7 +61,7 @@ const Status = () => {
 
 	return (
 		<div>
-			<Doughnut data={data} height={400} options={options} />
+			<Doughnut data={data} options={options} />
 		</div>
 	);
 };

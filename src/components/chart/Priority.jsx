@@ -34,7 +34,7 @@ const Priority = () => {
 		labels: ["Immediate", "High", "Medium", "Low"],
 		datasets: [
 			{
-				data: chart?.tickets?.map((x) => x.priority),
+				data: chart?.tickets?.map((x) => x.priority) || [5,3,5,1],
 				backgroundColor: [
 					"rgba(204, 0, 0, 0.2)",
 					"rgba(255, 153, 51, 0.2)",
