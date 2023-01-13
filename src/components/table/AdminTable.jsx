@@ -82,7 +82,6 @@ export default function AdminTable({ employee }) {
 								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
 								<StyledTableCell component='th' scope='row'>
 									{employee.firstName}
-									{employee.lastName}
 								</StyledTableCell>
 								<StyledTableCell align='right'>
 									{employee.phoneNumber}

@@ -66,10 +66,11 @@ export default function TicketTable1({ ticket }) {
 			<Table sx={{ minWidth: 650 }} aria-label='simple table'>
 				<TableHead>
 					<TableRow>
-						<StyledTableCell align='left'>Project Name</StyledTableCell>
 						<StyledTableCell align='left'>Title</StyledTableCell>
-						<StyledTableCell align='left'>Status</StyledTableCell>
+						<StyledTableCell align='left'>Description</StyledTableCell>
 						<StyledTableCell align='left'>Priority</StyledTableCell>
+						<StyledTableCell align='left'>Status</StyledTableCell>
+						<StyledTableCell align='left'>Type</StyledTableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
@@ -81,16 +82,19 @@ export default function TicketTable1({ ticket }) {
 								key={ticket.id}
 								sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
 								<StyledTableCell component='th' scope='row'>
-									{ticket.projectName}
-								</StyledTableCell>
-								<StyledTableCell align='right'>
 									{ticket.title}
+								</StyledTableCell>
+								<StyledTableCell align='left'>
+									{ticket.description}
+								</StyledTableCell>
+								<StyledTableCell align='left'>
+									{ticket.priority}
 								</StyledTableCell>
 								<StyledTableCell align='left'>
 									{ticket.status}
 								</StyledTableCell>
 								<StyledTableCell align='left'>
-									{ticket.priority}
+									{ticket.type}
 								</StyledTableCell>
 							</Ticket>
 						))}

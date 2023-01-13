@@ -4,21 +4,21 @@ const Employee = ({ employee }) => {
 
 	return (
 		<tr key={employee.id}>
-			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+			{employee.firstName && <td className='text-justify py-4 px-6 whitespace-nowrap'>
 				<div className='text-sm text-gray-600'>{employee.firstName}</div>
-			</td>
-			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+			</td>}
+			{employee.lastName && <td className='text-justify py-4 px-6 whitespace-nowrap'>
 				<div className='text-sm text-gray-600'>{employee.lastName}</div>
-			</td>
-			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+			</td>}
+			{employee.phoneNumber && <td className='text-justify py-4 px-6 whitespace-nowrap'>
 				<div className='text-sm text-gray-600'>{employee.phoneNumber}</div>
-			</td>
-			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+			</td>}
+			{employee.email && <td className='text-justify py-4 px-6 whitespace-nowrap'>
 				<div className='text-sm text-gray-600'>{employee.email}</div>
-			</td>
-			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+			</td>}
+			{employee.role && <td className='text-justify py-4 px-6 whitespace-nowrap'>
 				<div className='text-sm text-gray-600'>{employee.role}</div>
-			</td>
+			</td>}
 		</tr>
 	);
 };

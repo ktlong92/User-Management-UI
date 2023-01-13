@@ -4,15 +4,15 @@ const Project = ({ project }) => {
 	
 	return (
 		<tr key={project.id}>
-			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+			{project.title && <td className='text-justify py-4 px-6 whitespace-nowrap'>
 				<div className='text-sm text-gray-600'>{project.title}</div>
-			</td>
-			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+			</td>}
+			{project.description && <td className='text-justify py-4 px-6 whitespace-nowrap'>
 				<div className='text-sm text-gray-600'>{project.description}</div>
-			</td>
-			<td className='text-right py-4 px-6 whitespace-nowrap'>
+			</td>}
+			{project.employees && <td className='text-justify py-4 px-6 whitespace-nowrap'>
 				<div className='text-sm text-gray-600'>{project.employees}</div>
-			</td>
+			</td>}
 		</tr>
 	);
 };

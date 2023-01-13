@@ -86,7 +86,7 @@ export default function TicketTable1({ ticket }) {
 									{ticket.description}
 								</StyledTableCell>
 								<StyledTableCell align='left'>
-									{ticket.employees}
+									{ticket.employee}
 								</StyledTableCell>
 							</Ticket>
 						))}

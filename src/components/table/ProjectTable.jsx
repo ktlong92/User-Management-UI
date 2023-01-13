@@ -69,26 +69,24 @@ export default function ProjectTable({ project }) {
 				<Table sx={{ minWidth: 650 }} aria-label='simple table'>
 					<TableHead>
 						<TableRow>
-							<StyledTableCell align='justify'>Title</StyledTableCell>
-							<StyledTableCell align='justify'>Description</StyledTableCell>
-							<StyledTableCell align='justify'>Employees</StyledTableCell>
+							<StyledTableCell align='left'>Title</StyledTableCell>
+							<StyledTableCell align='left'>Description</StyledTableCell>
+							<StyledTableCell align='left'>Employees</StyledTableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
 						{projects
 							?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 							.map((project) => (
-								<Project project={project} key={project.id}>
+								<Project project={project} key={project.id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
 									<StyledTableCell component='th' scope='row'>
 										{project.title}
 									</StyledTableCell>
-									<StyledTableCell align='justify'>
+									<StyledTableCell align='left'>
 										{project.description}
 									</StyledTableCell>
-									<StyledTableCell align='justify'>
+									<StyledTableCell align='left'>
 										{project.employees}
-									</StyledTableCell>
-									<StyledTableCell align='justify'>
 									</StyledTableCell>
 								</Project>
 							))}

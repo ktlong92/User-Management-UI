@@ -4,27 +4,27 @@ const Ticket = ({ ticket }) => {
 
 	return (
 		<tr key={ticket.id}>
-			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+			{ticket.title && <td className='text-justify py-4 px-6 whitespace-nowrap'>
 				<div className='text-sm text-gray-600'>{ticket.title}</div>
-			</td>
-			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+			</td>}
+			{ticket.description && <td className='text-justify py-4 px-6 whitespace-nowrap'>
 				<div className='text-sm text-gray-600'>{ticket.description}</div>
-			</td>
-			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+			</td>}
+			{ticket.employees && <td className='text-justify py-4 px-6 whitespace-nowrap'>
 				<div className='text-sm text-gray-600'>{ticket.employees}</div>
-			</td>
-			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+			</td>}
+			{ticket.estimatedTime && <td className='text-justify py-4 px-6 whitespace-nowrap'>
 				<div className='text-sm text-gray-600'>{ticket.estimatedTime}</div>
-			</td>
-			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+			</td>}
+			{ticket.priority && <td className='text-justify py-4 px-6 whitespace-nowrap'>
 				<div className='text-sm text-gray-600'>{ticket.priority}</div>
-			</td>
-			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+			</td>}
+			{ticket.status && <td className='text-justify py-4 px-6 whitespace-nowrap'>
 				<div className='text-sm text-gray-600'>{ticket.status}</div>
-			</td>
-			<td className='text-justify py-4 px-6 whitespace-nowrap'>
+			</td>}
+			{ticket.type && <td className='text-justify py-4 px-6 whitespace-nowrap'>
 				<div className='text-sm text-gray-600'>{ticket.type}</div>
-			</td>
+			</td>}
 		</tr>
 	);
 };
